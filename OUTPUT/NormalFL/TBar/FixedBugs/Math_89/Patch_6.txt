@@ -1,0 +1,18 @@
+diff --git a/src/java/org/apache/commons/math/stat/Frequency.java b/src/java/org/apache/commons/math/stat/Frequency.java
+index c8deca3..bfe0188 100644
+--- a/src/java/org/apache/commons/math/stat/Frequency.java
++++ b/src/java/org/apache/commons/math/stat/Frequency.java
+@@ -107,7 +107,12 @@ public class Frequency implements Serializable {
+      */
+     @Deprecated
+     public void addValue(Object v) {
+-            addValue((Comparable<?>) v);            
++            if (v instanceof Comparable<?>) {
++	addValue((Comparable<?>) v);
++	} else {
++	throw new IllegalArgumentException("Illegal argument: v");
++}
++            
+     }
+     
+     /**

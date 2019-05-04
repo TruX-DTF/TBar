@@ -1,0 +1,13 @@
+diff --git a/src/com/google/javascript/jscomp/CheckSideEffects.java b/src/com/google/javascript/jscomp/CheckSideEffects.java
+index 0d1e95a..da75ef3 100644
+--- a/src/com/google/javascript/jscomp/CheckSideEffects.java
++++ b/src/com/google/javascript/jscomp/CheckSideEffects.java
+@@ -114,7 +114,7 @@ final class CheckSideEffects extends AbstractPostOrderCallback
+       if (isResultUsed) {
+         return;
+       }
+-      if (n == parent.getLastChild()) {
++      if (parent == parent.getLastChild()) {
+         for (Node an : parent.getAncestors()) {
+           int ancestorType = an.getType();
+           if (ancestorType == Token.COMMA) continue;

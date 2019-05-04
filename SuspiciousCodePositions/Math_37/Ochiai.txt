@@ -1,0 +1,13 @@
+org.apache.commons.math.complex.Complex@1182
+org.apache.commons.math.complex.Complex@1178
+org.apache.commons.math.util.FastMath@453
+org.apache.commons.math.util.FastMath@393
+org.apache.commons.math.complex.Complex@1070
+org.apache.commons.math.complex.Complex@1068
+org.apache.commons.math.complex.Complex@1067
+org.apache.commons.math.complex.Complex@1066
+org.apache.commons.math.complex.Complex@1026
+org.apache.commons.math.complex.Complex@1024
+org.apache.commons.math.complex.Complex@1023
+org.apache.commons.math.complex.Complex@1022
+org.apache.commons.math.complex.Complex@1063

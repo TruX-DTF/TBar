@@ -1,0 +1,15 @@
+diff --git a/src/main/java/org/joda/time/MutableDateTime.java b/src/main/java/org/joda/time/MutableDateTime.java
+index 310f55d..e02ffd3 100644
+--- a/src/main/java/org/joda/time/MutableDateTime.java
++++ b/src/main/java/org/joda/time/MutableDateTime.java
+@@ -636,7 +636,9 @@ public class MutableDateTime
+         if (type == null) {
+             throw new IllegalArgumentException("Field must not be null");
+         }
+-            setMillis(type.getField(getChronology()).add(getMillis(), amount));
++            if (amount >= MutableDateTime.ROUND_HALF_CEILING) {
++	setMillis(type.getField(getChronology()).add(getMillis(), amount));	}
++
+     }
+ 
+     //-----------------------------------------------------------------------

@@ -1,0 +1,16 @@
+diff --git a/src/java/org/apache/commons/lang/LocaleUtils.java b/src/java/org/apache/commons/lang/LocaleUtils.java
+index ceb886e..886083b 100644
+--- a/src/java/org/apache/commons/lang/LocaleUtils.java
++++ b/src/java/org/apache/commons/lang/LocaleUtils.java
+@@ -220,7 +220,10 @@ public class LocaleUtils {
+      * @return true if the locale is a known locale
+      */
+     public static boolean isAvailableLocale(Locale locale) {
+-        return cAvailableLocaleSet.contains(locale);
++        if (cAvailableLocaleSet == null) {
++	    return false;
++	}
++return cAvailableLocaleSet.contains(locale);
+     }
+ 
+     //-----------------------------------------------------------------------

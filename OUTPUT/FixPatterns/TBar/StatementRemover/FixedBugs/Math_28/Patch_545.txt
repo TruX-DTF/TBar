@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/linear/SimplexSolver.java b/src/main/java/org/apache/commons/math3/optimization/linear/SimplexSolver.java
+index a84438d..adb6864 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/linear/SimplexSolver.java
++++ b/src/main/java/org/apache/commons/math3/optimization/linear/SimplexSolver.java
+@@ -148,7 +148,7 @@ public class SimplexSolver extends AbstractLinearOptimizer {
+                         }
+                     }
+                 }
+-                return minRow;
++                
+         }
+         return minRatioPositions.get(0);
+     }

@@ -1,0 +1,14 @@
+diff --git a/source/org/jfree/chart/plot/XYPlot.java b/source/org/jfree/chart/plot/XYPlot.java
+index 50cf416..0f529f6 100644
+--- a/source/org/jfree/chart/plot/XYPlot.java
++++ b/source/org/jfree/chart/plot/XYPlot.java
+@@ -2290,7 +2290,8 @@ public class XYPlot extends Plot implements ValueAxisPlot, Zoomable,
+             markers = (ArrayList) this.backgroundDomainMarkers.get(new Integer(
+                     index));
+         }
+-        boolean removed = markers.remove(marker);
++        if (markers == null) markers = new ArrayList();
++ boolean removed = markers.remove(marker);
+         if (removed && notify) {
+             fireChangeEvent();
+         }

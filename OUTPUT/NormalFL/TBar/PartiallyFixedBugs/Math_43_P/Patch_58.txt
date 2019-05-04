@@ -1,0 +1,12 @@
+diff --git a/src/main/java/org/apache/commons/math/stat/descriptive/SummaryStatistics.java b/src/main/java/org/apache/commons/math/stat/descriptive/SummaryStatistics.java
+index 1203d51..9aca541 100644
+--- a/src/main/java/org/apache/commons/math/stat/descriptive/SummaryStatistics.java
++++ b/src/main/java/org/apache/commons/math/stat/descriptive/SummaryStatistics.java
+@@ -634,6 +634,7 @@ public class SummaryStatistics implements StatisticalSummary, Serializable {
+     public void setVarianceImpl(StorelessUnivariateStatistic varianceImpl) {
+         checkEmpty();
+         this.varianceImpl = varianceImpl;
++	setMaxImpl(varianceImpl);
+     }
+ 
+     /**

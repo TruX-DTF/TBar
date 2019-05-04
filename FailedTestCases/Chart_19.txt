@@ -1,0 +1,3 @@
+Failing tests: 2
+  - org.jfree.chart.plot.junit.CategoryPlotTests::testGetRangeAxisIndex
+  - org.jfree.chart.plot.junit.CategoryPlotTests::testGetDomainAxisIndex

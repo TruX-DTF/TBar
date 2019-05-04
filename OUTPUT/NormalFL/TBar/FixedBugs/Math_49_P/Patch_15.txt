@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/apache/commons/math/MathRuntimeException.java b/src/main/java/org/apache/commons/math/MathRuntimeException.java
+index ce2d352..4c515e7 100644
+--- a/src/main/java/org/apache/commons/math/MathRuntimeException.java
++++ b/src/main/java/org/apache/commons/math/MathRuntimeException.java
+@@ -129,7 +129,7 @@ public class MathRuntimeException extends RuntimeException implements MathThrowa
+      */
+     private static String buildMessage(final Locale locale, final Localizable pattern,
+                                        final Object ... arguments) {
+-        return new MessageFormat(pattern.getLocalizedString(locale), locale).format(arguments);
++        return new MessageFormat(pattern.getLocalizedString(locale), locale).format(pattern);
+     }
+ 
+     /** Gets the message in a specified locale.

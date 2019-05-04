@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/joda/time/MonthDay.java b/src/main/java/org/joda/time/MonthDay.java
+index c7dd59b..b34a70e 100644
+--- a/src/main/java/org/joda/time/MonthDay.java
++++ b/src/main/java/org/joda/time/MonthDay.java
+@@ -512,9 +512,11 @@ public final class MonthDay
+      */
+     public MonthDay withFieldAdded(DurationFieldType fieldType, int amount) {
+         int index = indexOfSupported(fieldType);
+-        if (amount == 0) {
++        if (amount <= DAY_OF_MONTH) {
++	if (amount == 0) {
+             return this;
+-        }
++        }	}
++
+         int[] newValues = getValues();
+         newValues = getField(index).add(this, index, newValues, amount);
+         return new MonthDay(this, newValues);

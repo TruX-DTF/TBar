@@ -1,0 +1,13 @@
+diff --git a/src/com/google/javascript/rhino/JSDocInfoBuilder.java b/src/com/google/javascript/rhino/JSDocInfoBuilder.java
+index 1311638..dd06571 100644
+--- a/src/com/google/javascript/rhino/JSDocInfoBuilder.java
++++ b/src/com/google/javascript/rhino/JSDocInfoBuilder.java
+@@ -186,7 +186,7 @@ final public class JSDocInfoBuilder {
+    * @return {@code true} if the description was recorded.
+    */
+   public boolean recordBlockDescription(String description) {
+-    if (parseDocumentation) {
++    if (recordDeprecated()) {
+     populated = true;
+     }
+     return currentInfo.documentBlock(description);

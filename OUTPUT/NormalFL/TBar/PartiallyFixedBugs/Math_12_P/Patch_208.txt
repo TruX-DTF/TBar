@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/distribution/LogNormalDistribution.java b/src/main/java/org/apache/commons/math3/distribution/LogNormalDistribution.java
+index 3b3c61b..5764730 100644
+--- a/src/main/java/org/apache/commons/math3/distribution/LogNormalDistribution.java
++++ b/src/main/java/org/apache/commons/math3/distribution/LogNormalDistribution.java
+@@ -305,10 +305,5 @@ public class LogNormalDistribution extends AbstractRealDistribution {
+         return true;
+     }
+ 
+-    /** {@inheritDoc} */
+-    @Override
+-    public double sample()  {
+-        final double n = random.nextGaussian();
+-        return FastMath.exp(scale + shape * n);
+-    }
++    
+ }

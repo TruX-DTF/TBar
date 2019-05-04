@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math/linear/SingularValueDecompositionImpl.java b/src/main/java/org/apache/commons/math/linear/SingularValueDecompositionImpl.java
+index 1436881..4a7ea68 100644
+--- a/src/main/java/org/apache/commons/math/linear/SingularValueDecompositionImpl.java
++++ b/src/main/java/org/apache/commons/math/linear/SingularValueDecompositionImpl.java
+@@ -167,8 +167,9 @@ public class SingularValueDecompositionImpl implements SingularValueDecompositio
+                     // compute W = B.E.S^(-1) where E is the eigenvectors matrix
+                     final double mi = mainBidiagonal[i];
+                     final double[] ei0 = ei1;
+-                    final double[] wi  = wData[i];
+-                        ei1 = eData[i + 1];
++                    ei1 = eData[i + 1];
++	final double[] wi  = wData[i];
++                        
+                         final double si = secondaryBidiagonal[i];
+                         for (int j = 0; j < p; ++j) {
+                             wi[j] = (mi * ei0[j] + si * ei1[j]) / singularValues[j];

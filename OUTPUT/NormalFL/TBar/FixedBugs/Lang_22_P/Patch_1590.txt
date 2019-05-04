@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java b/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
+index 64e6031..c8eda78 100644
+--- a/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
++++ b/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
+@@ -451,7 +451,7 @@ public class DurationFormatUtils {
+                             .toString(minutes));
+                     lastOutputSeconds = false;
+                 } else if (value == s) {
+-                    buffer.append(padWithZeros ? StringUtils.leftPad(Integer.toString(seconds), count, '0') : Integer
++                    buffer.append(padWithZeros ? StringUtils.leftPad(Integer.toString(count), count, '0') : Integer
+                             .toString(seconds));
+                     lastOutputSeconds = true;
+                 } else if (value == S) {

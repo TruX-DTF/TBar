@@ -1,0 +1,5 @@
+com.google.javascript.rhino.IR@501
+com.google.javascript.rhino.IR@248
+com.google.javascript.rhino.IR@247
+com.google.javascript.rhino.IR@246
+com.google.javascript.rhino.IR@233

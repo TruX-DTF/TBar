@@ -1,0 +1,12 @@
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index 08fb954..3fe2c19 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -2916,7 +2916,7 @@ public final class NodeUtil {
+         //  x -= g (x is now an local number)
+         if (isAssignmentOp(value)
+             || isSimpleOperator(value)
+-            || isImmutableValue(value)) {
++            || isImmutableValue(newUndefinedNode(value))) {
+           return true;
+         }

@@ -1,0 +1,15 @@
+org.jfree.chart.util.ShapeUtilities@295
+org.jfree.chart.util.ShapeUtilities@294
+org.jfree.chart.util.ShapeUtilities@293
+org.jfree.chart.util.ShapeUtilities@292
+org.jfree.chart.util.ShapeUtilities@291
+org.jfree.chart.util.ShapeUtilities@288
+org.jfree.chart.util.ShapeUtilities@285
+org.jfree.chart.util.ShapeUtilities@284
+org.jfree.chart.util.ShapeUtilities@283
+org.jfree.chart.util.ShapeUtilities@280
+org.jfree.chart.util.ShapeUtilities@279
+org.jfree.chart.util.ShapeUtilities@278
+org.jfree.chart.util.ShapeUtilities@277
+org.jfree.chart.util.ShapeUtilities@276
+org.jfree.chart.util.ShapeUtilities@275

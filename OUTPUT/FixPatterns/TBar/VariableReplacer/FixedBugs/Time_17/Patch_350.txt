@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/joda/time/DateTimeZone.java b/src/main/java/org/joda/time/DateTimeZone.java
+index 74a3802..54cb6d9 100644
+--- a/src/main/java/org/joda/time/DateTimeZone.java
++++ b/src/main/java/org/joda/time/DateTimeZone.java
+@@ -1172,7 +1172,7 @@ public abstract class DateTimeZone implements Serializable {
+         
+         // work out range of instants that have duplicate local times
+         long local = convertUTCToLocal(instant);
+-        return convertLocalToUTC(local, false, earlierOrLater ? instantAfter : instantBefore);
++        return convertLocalToUTC(local, false, earlierOrLater ? convertLocalToUTC(instantAfter, earlierOrLater, instantAfter) : instantBefore);
+         
+         // calculate result
+           // currently in later offset

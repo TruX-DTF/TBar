@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/apache/commons/math/linear/SingularValueDecompositionImpl.java b/src/main/java/org/apache/commons/math/linear/SingularValueDecompositionImpl.java
+index 1436881..ce3bd61 100644
+--- a/src/main/java/org/apache/commons/math/linear/SingularValueDecompositionImpl.java
++++ b/src/main/java/org/apache/commons/math/linear/SingularValueDecompositionImpl.java
+@@ -159,7 +159,7 @@ public class SingularValueDecompositionImpl implements SingularValueDecompositio
+             if (m >= n) {
+                 // the tridiagonal matrix is Bt.B, where B is upper bidiagonal
+                 final RealMatrix e =
+-                    eigenDecomposition.getV().getSubMatrix(0, p - 1, 0, p - 1);
++                    eigenDecomposition.getV().getSubMatrix(0, this.n - 1, 0, p - 1);
+                 final double[][] eData = e.getData();
+                 final double[][] wData = new double[m][p];
+                 double[] ei1 = eData[0];

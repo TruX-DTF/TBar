@@ -1,0 +1,24 @@
+diff --git a/src/main/java/org/joda/time/Partial.java b/src/main/java/org/joda/time/Partial.java
+index b9ec964..10eb901 100644
+--- a/src/main/java/org/joda/time/Partial.java
++++ b/src/main/java/org/joda/time/Partial.java
+@@ -215,7 +215,8 @@ public final class Partial
+             DurationField loopUnitField = loopType.getDurationType().getField(iChronology);
+             if (i > 0) {
+                 int compare = lastUnitField.compareTo(loopUnitField);
+-                if (compare < 0 || (compare != 0 && loopUnitField.isSupported() == false)) {
++                if (loopUnitField == lastUnitField) {
++	if (compare < 0 || (compare != 0 && loopUnitField.isSupported() == false)) {
+                     throw new IllegalArgumentException("Types array must be in order largest-smallest: " +
+                             types[i - 1].getName() + " < " + loopType.getName());
+                 } else if (compare == 0) {
+@@ -240,7 +241,8 @@ public final class Partial
+                                             types[i - 1].getName() + " and " + loopType.getName());
+                         }
+                     }
+-                }
++                }	}
++
+             }
+             lastUnitField = loopUnitField;
+         }

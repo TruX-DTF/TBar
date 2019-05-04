@@ -1,0 +1,2 @@
+Failing tests: 1
+  - org.jfree.chart.renderer.category.junit.AbstractCategoryItemRendererTests::test2947660

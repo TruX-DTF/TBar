@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/joda/time/chrono/ZonedChronology.java b/src/main/java/org/joda/time/chrono/ZonedChronology.java
+index f165f3d..3de48de 100644
+--- a/src/main/java/org/joda/time/chrono/ZonedChronology.java
++++ b/src/main/java/org/joda/time/chrono/ZonedChronology.java
+@@ -464,7 +464,7 @@ public final class ZonedChronology extends AssembledChronology {
+         public long set(long instant, int value) {
+             long localInstant = iZone.convertUTCToLocal(instant);
+             localInstant = iField.set(localInstant, value);
+-            long result = iZone.convertLocalToUTC(localInstant, false);
++            long result = iZone.convertLocalToUTC(localInstant, false, instant);
+             if (get(result) != value) {
+                 throw new IllegalFieldValueException(iField.getType(), new Integer(value),
+                     "Illegal instant due to time zone offset transition: " +

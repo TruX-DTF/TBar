@@ -1,0 +1,6 @@
+org.jfree.data.DefaultKeyedValues@338
+org.jfree.data.DefaultKeyedValues@337
+org.jfree.data.DefaultKeyedValues@334
+org.jfree.data.DefaultKeyedValues@333
+org.jfree.data.DefaultKeyedValues@321
+org.jfree.data.DefaultKeyedValues@318

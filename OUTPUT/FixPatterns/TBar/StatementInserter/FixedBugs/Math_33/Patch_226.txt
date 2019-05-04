@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/linear/SimplexTableau.java b/src/main/java/org/apache/commons/math3/optimization/linear/SimplexTableau.java
+index 9a6993a..04a66f0 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/linear/SimplexTableau.java
++++ b/src/main/java/org/apache/commons/math3/optimization/linear/SimplexTableau.java
+@@ -335,9 +335,11 @@ class SimplexTableau implements Serializable {
+         // positive cost non-artificial variables
+         for (int i = getNumObjectiveFunctions(); i < getArtificialVariableOffset(); i++) {
+             final double entry = tableau.getEntry(0, i);
+-            if (Precision.compareTo(entry, 0d, maxUlps) > 0) {
++            if (entry >= this.epsilon) {
++	if (Precision.compareTo(entry, 0d, maxUlps) > 0) {
+                 columnsToDrop.add(i);
+-            }
++            }	}
++
+         }
+ 
+         // non-basic artificial variables

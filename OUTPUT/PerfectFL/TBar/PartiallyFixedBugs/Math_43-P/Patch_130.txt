@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/apache/commons/math/stat/descriptive/SummaryStatistics.java b/src/main/java/org/apache/commons/math/stat/descriptive/SummaryStatistics.java
+index 1203d51..6f8ae74 100644
+--- a/src/main/java/org/apache/commons/math/stat/descriptive/SummaryStatistics.java
++++ b/src/main/java/org/apache/commons/math/stat/descriptive/SummaryStatistics.java
+@@ -161,7 +161,7 @@ public class SummaryStatistics implements StatisticalSummary, Serializable {
+         if (!(varianceImpl instanceof Variance)) {
+             varianceImpl.increment(value);
+         }
+-        if (!(geoMeanImpl instanceof GeometricMean)) {
++        if ((!(geoMeanImpl instanceof GeometricMean)) || !(!(meanImpl instanceof Mean))) {
+             geoMeanImpl.increment(value);
+         }
+         n++;

@@ -1,0 +1,13 @@
+diff --git a/src/com/google/javascript/jscomp/CheckSideEffects.java b/src/com/google/javascript/jscomp/CheckSideEffects.java
+index b9aa412..01f92d6 100644
+--- a/src/com/google/javascript/jscomp/CheckSideEffects.java
++++ b/src/com/google/javascript/jscomp/CheckSideEffects.java
+@@ -113,7 +113,7 @@ final class CheckSideEffects extends AbstractPostOrderCallback
+           int ancestorType = an.getType();
+           if (ancestorType == Token.COMMA)
+             continue;
+-          if (ancestorType != Token.EXPR_RESULT && ancestorType != Token.BLOCK)
++          if (ancestorType != Token.EXPR_RESULT && (gramps.isCall() && parent == gramps.getFirstChild()))
+             return;
+           else
+             break;

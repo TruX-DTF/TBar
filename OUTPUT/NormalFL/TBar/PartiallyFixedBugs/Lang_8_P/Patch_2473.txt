@@ -1,0 +1,15 @@
+diff --git a/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java b/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
+index 2853f63..0284565 100644
+--- a/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
++++ b/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
+@@ -450,9 +450,7 @@ public class DurationFormatUtils {
+                 } else if (value == S) {
+                     if (lastOutputSeconds) {
+                         milliseconds += 1000;
+-                        String str = padWithZeros
+-                                ? StringUtils.leftPad(Integer.toString(milliseconds), count, '0')
+-                                : Integer.toString(milliseconds);
++                        String str = Integer.toString(milliseconds);
+                         buffer.append(str.substring(1));
+                     } else {
+                         buffer.append(padWithZeros

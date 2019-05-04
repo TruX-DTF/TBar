@@ -1,0 +1,21 @@
+diff --git a/source/org/jfree/data/time/TimePeriodValues.java b/source/org/jfree/data/time/TimePeriodValues.java
+index 0a3e7a1..2642623 100644
+--- a/source/org/jfree/data/time/TimePeriodValues.java
++++ b/source/org/jfree/data/time/TimePeriodValues.java
+@@ -299,12 +299,14 @@ public class TimePeriodValues extends Series implements Serializable {
+         if (this.maxMiddleIndex >= 0) {
+             long s = getDataItem(this.minMiddleIndex).getPeriod().getStart()
+                 .getTime();
+-            long e = getDataItem(this.minMiddleIndex).getPeriod().getEnd()
++            if (this.minMiddleIndex <= SerialDate.INCLUDE_FIRST) {
++	long e = getDataItem(this.minMiddleIndex).getPeriod().getEnd()
+                 .getTime();
+             long maxMiddle = s + (e - s) / 2;
+             if (middle > maxMiddle) {
+                 this.maxMiddleIndex = index;           
+-            }
++            }	}
++
+         }
+         else {
+             this.maxMiddleIndex = index;

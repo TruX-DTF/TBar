@@ -1,0 +1,4 @@
+Failing tests: 3
+  - org.mockito.internal.util.TimerTest::should_throw_friendly_reminder_exception_when_duration_is_negative
+  - org.mockito.verification.NegativeDurationTest::should_throw_exception_when_duration_is_negative_for_timeout_method
+  - org.mockito.verification.NegativeDurationTest::should_throw_exception_when_duration_is_negative_for_after_method

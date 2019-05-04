@@ -1,0 +1,55 @@
+diff --git a/source/org/jfree/chart/renderer/category/StatisticalBarRenderer.java b/source/org/jfree/chart/renderer/category/StatisticalBarRenderer.java
+index ab65ba3..a544330 100644
+--- a/source/org/jfree/chart/renderer/category/StatisticalBarRenderer.java
++++ b/source/org/jfree/chart/renderer/category/StatisticalBarRenderer.java
+@@ -170,49 +170,7 @@ public class StatisticalBarRenderer extends BarRenderer
+         notifyListeners(new RendererChangeEvent(this));
+     }
+     
+-    /**
+-     * Draws the bar with its standard deviation line range for a single 
+-     * (series, category) data item.
+-     *
+-     * @param g2  the graphics device.
+-     * @param state  the renderer state.
+-     * @param dataArea  the data area.
+-     * @param plot  the plot.
+-     * @param domainAxis  the domain axis.
+-     * @param rangeAxis  the range axis.
+-     * @param data  the data.
+-     * @param row  the row index (zero-based).
+-     * @param column  the column index (zero-based).
+-     * @param pass  the pass index.
+-     */
+-    public void drawItem(Graphics2D g2,
+-                         CategoryItemRendererState state,
+-                         Rectangle2D dataArea,
+-                         CategoryPlot plot,
+-                         CategoryAxis domainAxis,
+-                         ValueAxis rangeAxis,
+-                         CategoryDataset data,
+-                         int row,
+-                         int column,
+-                         int pass) {
+-
+-        // defensive check
+-        if (!(data instanceof StatisticalCategoryDataset)) {
+-            throw new IllegalArgumentException(
+-                "Requires StatisticalCategoryDataset.");
+-        }
+-        StatisticalCategoryDataset statData = (StatisticalCategoryDataset) data;
+-
+-        PlotOrientation orientation = plot.getOrientation();
+-        if (orientation == PlotOrientation.HORIZONTAL) {
+-            drawHorizontalItem(g2, state, dataArea, plot, domainAxis, 
+-                    rangeAxis, statData, row, column);
+-        }
+-        else if (orientation == PlotOrientation.VERTICAL) {
+-            drawVerticalItem(g2, state, dataArea, plot, domainAxis, rangeAxis, 
+-                    statData, row, column);
+-        }
+-    }
++    
+                 
+     /**
+      * Draws an item for a plot with a horizontal orientation.

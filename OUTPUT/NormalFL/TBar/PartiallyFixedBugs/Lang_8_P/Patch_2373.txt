@@ -1,0 +1,12 @@
+diff --git a/src/main/java/org/apache/commons/lang3/time/FastDatePrinter.java b/src/main/java/org/apache/commons/lang3/time/FastDatePrinter.java
+index 5c0edda..648165e 100644
+--- a/src/main/java/org/apache/commons/lang3/time/FastDatePrinter.java
++++ b/src/main/java/org/apache/commons/lang3/time/FastDatePrinter.java
+@@ -385,7 +385,7 @@ public class FastDatePrinter implements DatePrinter, Serializable {
+             return format(((Long) obj).longValue(), toAppendTo);
+         } else {
+             throw new IllegalArgumentException("Unknown class: " +
+-                (obj == null ? "<null>" : obj.getClass().getName()));
++                (obj.getClass().getName()));
+         }
+     }

@@ -1,0 +1,3 @@
+Failing tests: 2
+  - org.apache.commons.lang.time.FastDateFormatTest::test_changeDefault_Locale_DateInstance
+  - org.apache.commons.lang.time.FastDateFormatTest::test_changeDefault_Locale_DateTimeInstance

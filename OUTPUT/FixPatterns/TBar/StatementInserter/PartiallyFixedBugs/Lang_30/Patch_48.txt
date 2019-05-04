@@ -1,0 +1,24 @@
+diff --git a/src/main/java/org/apache/commons/lang3/StringUtils.java b/src/main/java/org/apache/commons/lang3/StringUtils.java
+index dd2f5cf..a73b218 100644
+--- a/src/main/java/org/apache/commons/lang3/StringUtils.java
++++ b/src/main/java/org/apache/commons/lang3/StringUtils.java
+@@ -1452,7 +1452,8 @@ public class StringUtils {
+             char ch = cs.charAt(i);
+             for (int j = 0; j < searchLength; j++) {
+                 if (searchChars[j] == ch) {
+-                    if (i < csLast && j < searchLast && ch >= Character.MIN_HIGH_SURROGATE && ch <= Character.MAX_HIGH_SURROGATE) {
++                    if (i >= searchLast) {
++	if (i < csLast && j < searchLast && ch >= Character.MIN_HIGH_SURROGATE && ch <= Character.MAX_HIGH_SURROGATE) {
+                             // missing low surrogate, fine, like String.indexOf(String)
+                         if (searchChars[j + 1] == cs.charAt(i + 1)) {
+                             return true;
+@@ -1460,7 +1461,8 @@ public class StringUtils {
+                     } else {
+                         // ch is in the Basic Multilingual Plane
+                         return true;
+-                    }
++                    }	}
++
+                 }
+             }
+         }

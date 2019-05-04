@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java b/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
+index 2853f63..a429461 100644
+--- a/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
++++ b/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
+@@ -141,7 +141,7 @@ public class DurationFormatUtils {
+             minutes = (int) (durationMillis / DateUtils.MILLIS_PER_MINUTE);
+             durationMillis = durationMillis - (minutes * DateUtils.MILLIS_PER_MINUTE);
+         }
+-        if (Token.containsTokenWithValue(tokens, s) ) {
++        if (s == M || (Token.containsTokenWithValue(tokens, s)) ) {
+             seconds = (int) (durationMillis / DateUtils.MILLIS_PER_SECOND);
+             durationMillis = durationMillis - (seconds * DateUtils.MILLIS_PER_SECOND);
+         }

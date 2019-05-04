@@ -1,0 +1,6 @@
+org.apache.commons.math.stat.descriptive.moment.Variance@370
+org.apache.commons.math.stat.descriptive.moment.Variance@531
+org.apache.commons.math.stat.descriptive.moment.Variance@525
+org.apache.commons.math.stat.descriptive.moment.Variance@524
+org.apache.commons.math.stat.descriptive.moment.Variance@521
+org.apache.commons.math.stat.descriptive.moment.Variance@520

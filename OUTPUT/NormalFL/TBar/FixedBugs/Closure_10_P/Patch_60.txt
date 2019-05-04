@@ -1,0 +1,15 @@
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index eef2792..cafb3dd 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -1268,8 +1268,8 @@ public final class NodeUtil {
+         return allResultsMatch(n.getFirstChild(), p)
+             && allResultsMatch(n.getLastChild(), p);
+       case Token.HOOK:
+-        return allResultsMatch(n.getFirstChild().getNext(), p)
+-            && allResultsMatch(n.getLastChild(), p);
++        return (allResultsMatch(n.getFirstChild().getNext(), p)
++            && allResultsMatch(n.getLastChild(), p)) || (mayHaveSideEffects(n.getFirstChild()));
+       default:
+         return p.apply(n);
+     }

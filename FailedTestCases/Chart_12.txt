@@ -1,0 +1,2 @@
+Failing tests: 1
+  - org.jfree.chart.plot.junit.MultiplePiePlotTests::testConstructor

@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/SubLine.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/SubLine.java
+index a146cb6..89c9822 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/SubLine.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/SubLine.java
+@@ -113,7 +113,10 @@ public class SubLine {
+         Vector3D v1D = line.intersection(subLine.line);
+ 
+         // check location of point with respect to first sub-line
+-        Location loc1 = remainingRegion.checkPoint(line.toSubSpace(v1D));
++        if (v1D == null) {
++	    return null;
++	}
++Location loc1 = remainingRegion.checkPoint(line.toSubSpace(v1D));
+ 
+         // check location of point with respect to second sub-line
+         Location loc2 = subLine.remainingRegion.checkPoint(subLine.line.toSubSpace(v1D));

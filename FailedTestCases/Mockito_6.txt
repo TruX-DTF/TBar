@@ -1,0 +1,8 @@
+Failing tests: 7
+  - org.mockitousage.matchers.AnyXMatchersAcceptNullsTest::shouldNotAcceptNullInAllAnyPrimitiveWrapperMatchers
+  - org.mockitousage.matchers.AnyXMatchersAcceptNullsTest::shouldNotAcceptNullInAnyXMatchers
+  - org.mockitousage.matchers.MatchersTest::anyStringMatcher
+  - org.mockitousage.matchers.NewMatchersTest::shouldAllowAnyCollection
+  - org.mockitousage.matchers.NewMatchersTest::shouldAllowAnyList
+  - org.mockitousage.matchers.NewMatchersTest::shouldAllowAnyMap
+  - org.mockitousage.matchers.NewMatchersTest::shouldAllowAnySet

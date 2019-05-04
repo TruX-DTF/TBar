@@ -1,0 +1,13 @@
+diff --git a/source/org/jfree/chart/util/AbstractObjectList.java b/source/org/jfree/chart/util/AbstractObjectList.java
+index cb99eb7..ddcec34 100644
+--- a/source/org/jfree/chart/util/AbstractObjectList.java
++++ b/source/org/jfree/chart/util/AbstractObjectList.java
+@@ -262,7 +262,8 @@ public class AbstractObjectList implements Cloneable, Serializable {
+                 stream.writeObject(object);
+             }
+             else {
+-                stream.writeInt(-1);
++                clear();
++	stream.writeInt(-1);
+             }
+         }

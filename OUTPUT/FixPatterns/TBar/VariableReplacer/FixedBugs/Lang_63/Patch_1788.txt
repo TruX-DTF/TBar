@@ -1,0 +1,13 @@
+diff --git a/src/java/org/apache/commons/lang/time/DurationFormatUtils.java b/src/java/org/apache/commons/lang/time/DurationFormatUtils.java
+index 127b927..5b458c6 100644
+--- a/src/java/org/apache/commons/lang/time/DurationFormatUtils.java
++++ b/src/java/org/apache/commons/lang/time/DurationFormatUtils.java
+@@ -434,7 +434,7 @@ public class DurationFormatUtils {
+         int endValue = end.get(field);
+         int startValue = start.get(field);
+         if (endValue < startValue) {
+-            int newdiff = startValue - endValue;
++            int newdiff = difference - endValue;
+             end.add( field, newdiff );
+             return newdiff;
+         } else {

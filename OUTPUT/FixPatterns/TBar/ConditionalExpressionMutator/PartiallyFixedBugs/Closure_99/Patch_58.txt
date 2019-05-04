@@ -1,0 +1,14 @@
+diff --git a/src/com/google/javascript/jscomp/CheckGlobalThis.java b/src/com/google/javascript/jscomp/CheckGlobalThis.java
+index 25327af..f18d9bf 100644
+--- a/src/com/google/javascript/jscomp/CheckGlobalThis.java
++++ b/src/com/google/javascript/jscomp/CheckGlobalThis.java
+@@ -88,9 +88,7 @@ final class CheckGlobalThis implements Callback {
+       // or @override annotation.
+       JSDocInfo jsDoc = getFunctionJsDocInfo(n);
+       if (jsDoc != null &&
+-          (jsDoc.isConstructor() ||
+-           jsDoc.hasThisType() ||
+-           jsDoc.isOverride())) {
++          (n.getType() == Token.FUNCTION)) {
+         return false;
+       }

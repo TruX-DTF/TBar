@@ -1,0 +1,6 @@
+org.apache.commons.math.exception.MathRuntimeException@114
+org.apache.commons.math.exception.MathRuntimeException@108
+org.apache.commons.math.exception.MathRuntimeException@102
+org.apache.commons.math.exception.util.MessageFactory@66
+org.apache.commons.math.exception.util.MessageFactory@65
+org.apache.commons.math.optimization.fitting.GaussianFitter@121

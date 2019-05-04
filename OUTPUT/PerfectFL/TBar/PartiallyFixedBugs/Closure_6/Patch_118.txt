@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/TypeValidator.java b/src/com/google/javascript/jscomp/TypeValidator.java
+index 8cdb02a..2eb3fee 100644
+--- a/src/com/google/javascript/jscomp/TypeValidator.java
++++ b/src/com/google/javascript/jscomp/TypeValidator.java
+@@ -363,12 +363,6 @@ class TypeValidator {
+       JSType leftType, Node owner, String propName) {
+     // The NoType check is a hack to make typedefs work OK.
+     if (!leftType.isNoType() && !rightType.canAssignTo(leftType)) {
+-      if ((leftType.isConstructor() || leftType.isEnumType()) && (rightType.isConstructor() || rightType.isEnumType())) {
+-        registerMismatch(rightType, leftType, null);
+-      } else {
+-      // Do not type-check interface methods, because we expect that
+-      // they will have dummy implementations that do not match the type
+-      // annotations.
+       JSType ownerType = getJSType(owner);
+       if (ownerType.isFunctionPrototypeType()) {
+         FunctionType ownerFn = ownerType.toObjectType().getOwnerFunction();
+@@ -382,7 +376,6 @@ class TypeValidator {
+           "assignment to property " + propName + " of " +
+           getReadableJSTypeName(owner, true),
+           rightType, leftType);
+-      }
+       return false;
+     }
+     return true;

@@ -1,0 +1,13 @@
+diff --git a/source/org/jfree/data/time/TimePeriodValues.java b/source/org/jfree/data/time/TimePeriodValues.java
+index 0a3e7a1..5f5e214 100644
+--- a/source/org/jfree/data/time/TimePeriodValues.java
++++ b/source/org/jfree/data/time/TimePeriodValues.java
+@@ -303,7 +303,7 @@ public class TimePeriodValues extends Series implements Serializable {
+                 .getTime();
+             long maxMiddle = s + (e - s) / 2;
+             if (middle > maxMiddle) {
+-                this.maxMiddleIndex = index;           
++                this.maxMiddleIndex = getMaxStartIndex();           
+             }
+         }
+         else {

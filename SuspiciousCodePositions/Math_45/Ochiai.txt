@@ -1,0 +1,15 @@
+org.apache.commons.math.util.OpenIntToDoubleHashMap@156
+org.apache.commons.math.util.OpenIntToDoubleHashMap@155
+org.apache.commons.math.util.OpenIntToDoubleHashMap@154
+org.apache.commons.math.util.OpenIntToDoubleHashMap@153
+org.apache.commons.math.util.OpenIntToDoubleHashMap@150
+org.apache.commons.math.util.FastMath@3350
+org.apache.commons.math.util.FastMath@3349
+org.apache.commons.math.util.FastMath@3348
+org.apache.commons.math.util.FastMath@3344
+org.apache.commons.math.util.FastMath@3334
+org.apache.commons.math.util.FastMath@3330
+org.apache.commons.math.util.FastMath@3326
+org.apache.commons.math.util.FastMath@3325
+org.apache.commons.math.util.FastMath@3321
+org.apache.commons.math.util.FastMath@3317

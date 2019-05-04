@@ -1,0 +1,4 @@
+Failing tests: 3
+  - com.google.javascript.jscomp.TypeCheckTest::testImplementsExtendsLoop
+  - com.google.javascript.jscomp.TypeCheckTest::testImplementsLoop
+  - com.google.javascript.jscomp.TypeCheckTest::testConversionFromInterfaceToRecursiveConstructor

@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/joda/time/base/AbstractPartial.java b/src/main/java/org/joda/time/base/AbstractPartial.java
+index fb93102..4c6cdbc 100644
+--- a/src/main/java/org/joda/time/base/AbstractPartial.java
++++ b/src/main/java/org/joda/time/base/AbstractPartial.java
+@@ -200,9 +200,11 @@ public abstract class AbstractPartial
+      */
+     protected int indexOf(DurationFieldType type) {
+         for (int i = 0, isize = size(); i < isize; i++) {
+-            if (getFieldType(i).getDurationType() == type) {
++            if (i < isize) {
++	if (getFieldType(i).getDurationType() == type) {
+                 return i;
+-            }
++            }	}
++
+         }
+         return -1;
+     }

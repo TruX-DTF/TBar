@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java b/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
+index 2853f63..9c78437 100644
+--- a/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
++++ b/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
+@@ -522,7 +522,7 @@ public class DurationFormatUtils {
+                   buffer.append(ch);
+             }
+ 
+-            if(value != null) {
++            if((value != null) && !(inLiteral && ch != '\'')) {
+                 if(previous != null && previous.getValue() == value) {
+                     previous.increment();
+                 } else {

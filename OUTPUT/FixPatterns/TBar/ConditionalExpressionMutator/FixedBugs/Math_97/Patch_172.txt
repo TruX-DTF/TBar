@@ -1,0 +1,13 @@
+diff --git a/src/java/org/apache/commons/math/analysis/BrentSolver.java b/src/java/org/apache/commons/math/analysis/BrentSolver.java
+index 766d87e..9e5d057 100644
+--- a/src/java/org/apache/commons/math/analysis/BrentSolver.java
++++ b/src/java/org/apache/commons/math/analysis/BrentSolver.java
+@@ -135,7 +135,7 @@ public class BrentSolver extends UnivariateRealSolverImpl {
+         
+         // Verify bracketing
+         double sign = yMin * yMax;
+-        if (sign >= 0) {
++        if (sign >= this.defaultFunctionValueAccuracy && (sign >= 0)) {
+             // check if either value is close to a zero
+                 // neither value is close to zero and min and max do not bracket root.
+                 throw new IllegalArgumentException

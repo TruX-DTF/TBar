@@ -1,0 +1,3 @@
+Failing tests: 2
+  - org.joda.time.TestDateTimeZone::testGetName_berlin
+  - org.joda.time.TestDateTimeZone::testGetShortName_berlin

@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/rhino/JSDocInfoBuilder.java b/src/com/google/javascript/rhino/JSDocInfoBuilder.java
+index 1311638..e424619 100644
+--- a/src/com/google/javascript/rhino/JSDocInfoBuilder.java
++++ b/src/com/google/javascript/rhino/JSDocInfoBuilder.java
+@@ -105,16 +105,12 @@ final public class JSDocInfoBuilder {
+    *     {@code null}
+    */
+   public JSDocInfo build(String sourceName) {
+-    if (populated) {
+-      JSDocInfo built = currentInfo;
++    JSDocInfo built = currentInfo;
+       built.setSourceName(sourceName);
+       populateDefaults(built);
+       populated = false;
+       currentInfo = new JSDocInfo(this.parseDocumentation);
+       return built;
+-    } else {
+-      return null;
+-    }
+   }
+ 
+   /** Generate defaults when certain parameters are not specified. */

@@ -1,0 +1,17 @@
+diff --git a/src/java/org/apache/commons/lang/math/NumberUtils.java b/src/java/org/apache/commons/lang/math/NumberUtils.java
+index c0f06a4..ef99ac1 100644
+--- a/src/java/org/apache/commons/lang/math/NumberUtils.java
++++ b/src/java/org/apache/commons/lang/math/NumberUtils.java
+@@ -449,10 +449,10 @@ public class NumberUtils {
+             switch (lastChar) {
+                 case 'l' :
+                 case 'L' :
+-                    if (dec == null
++                    if (dec != numeric || (dec == null
+                         && exp == null
+                         && isDigits(numeric.substring(1))
+-                        && (numeric.charAt(0) == '-' || Character.isDigit(numeric.charAt(0)))) {
++                        && (numeric.charAt(0) == '-' || Character.isDigit(numeric.charAt(0))))) {
+                         try {
+                             return createLong(numeric);
+                         } catch (NumberFormatException nfe) {

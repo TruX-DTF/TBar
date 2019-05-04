@@ -1,0 +1,11 @@
+org.apache.commons.math.MathRuntimeException@39
+org.apache.commons.math.MathRuntimeException@136
+org.apache.commons.math.exception.util.LocalizedFormats@341
+org.apache.commons.math.exception.util.LocalizedFormats@328
+org.apache.commons.math.distribution.NormalDistributionImpl@147
+org.apache.commons.math.distribution.NormalDistributionImpl@146
+org.apache.commons.math.distribution.NormalDistributionImpl@141
+org.apache.commons.math.distribution.NormalDistributionImpl@115
+org.apache.commons.math.distribution.NormalDistributionImpl@114
+org.apache.commons.math.MathRuntimeException@387
+org.apache.commons.math.util.FastMath@219

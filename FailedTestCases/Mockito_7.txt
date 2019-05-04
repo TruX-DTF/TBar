@@ -1,0 +1,2 @@
+Failing tests: 1
+  - org.mockitousage.bugs.deepstubs.DeepStubFailingWhenGenricNestedAsRawTypeTest::discoverDeepMockingOfGenerics

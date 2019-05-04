@@ -1,0 +1,16 @@
+diff --git a/source/org/jfree/data/category/DefaultIntervalCategoryDataset.java b/source/org/jfree/data/category/DefaultIntervalCategoryDataset.java
+index 2efdfcb..29eb238 100644
+--- a/source/org/jfree/data/category/DefaultIntervalCategoryDataset.java
++++ b/source/org/jfree/data/category/DefaultIntervalCategoryDataset.java
+@@ -687,7 +687,10 @@ public class DefaultIntervalCategoryDataset extends AbstractSeriesDataset
+      * @see #getRowCount()
+      */
+     public int getColumnCount() {
+-        return this.categoryKeys.length;
++        if (this.categoryKeys == null) {
++	    return 0;
++	}
++return this.categoryKeys.length;
+     }
+ 
+     /**

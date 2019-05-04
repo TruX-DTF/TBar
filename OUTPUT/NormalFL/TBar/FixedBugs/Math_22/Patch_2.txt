@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/apache/commons/math3/distribution/FDistribution.java b/src/main/java/org/apache/commons/math3/distribution/FDistribution.java
+index 8b0993c..e301e2e 100644
+--- a/src/main/java/org/apache/commons/math3/distribution/FDistribution.java
++++ b/src/main/java/org/apache/commons/math3/distribution/FDistribution.java
+@@ -272,7 +272,7 @@ public class FDistribution extends AbstractRealDistribution {
+ 
+     /** {@inheritDoc} */
+     public boolean isSupportLowerBoundInclusive() {
+-        return true;
++        return false;
+     }
+ 
+     /** {@inheritDoc} */

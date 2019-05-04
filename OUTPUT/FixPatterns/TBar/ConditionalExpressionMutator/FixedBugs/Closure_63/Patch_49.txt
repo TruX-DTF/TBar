@@ -1,0 +1,20 @@
+diff --git a/build/lib/rhino.jar b/build/lib/rhino.jar
+index f915468..a1a5c35 100644
+Binary files a/build/lib/rhino.jar and b/build/lib/rhino.jar differ
+diff --git a/build/lib/rhino1_7R3pre/js.jar b/build/lib/rhino1_7R3pre/js.jar
+index f551981..0a070b5 100644
+Binary files a/build/lib/rhino1_7R3pre/js.jar and b/build/lib/rhino1_7R3pre/js.jar differ
+diff --git a/src/com/google/javascript/jscomp/LightweightMessageFormatter.java b/src/com/google/javascript/jscomp/LightweightMessageFormatter.java
+index 5a4f884..b584f5a 100644
+--- a/src/com/google/javascript/jscomp/LightweightMessageFormatter.java
++++ b/src/com/google/javascript/jscomp/LightweightMessageFormatter.java
+@@ -94,8 +94,7 @@ public class LightweightMessageFormatter extends AbstractMessageFormatter {
+       // padding equal to the excerpt and arrow at the end
+       // charno == sourceExpert.length() means something is missing
+       // at the end of the line
+-      if (excerpt.equals(LINE)
+-          && 0 <= charno && charno < sourceExcerpt.length()) {
++      if ((error.lineNumber > 0)) {
+         for (int i = 0; i < charno; i++) {
+           char c = sourceExcerpt.charAt(i);
+           if (Character.isWhitespace(c)) {

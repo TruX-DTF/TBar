@@ -1,0 +1,13 @@
+diff --git a/src/com/google/javascript/rhino/testing/BaseJSTypeTestCase.java b/src/com/google/javascript/rhino/testing/BaseJSTypeTestCase.java
+index b7a180f..f53272c 100644
+--- a/src/com/google/javascript/rhino/testing/BaseJSTypeTestCase.java
++++ b/src/com/google/javascript/rhino/testing/BaseJSTypeTestCase.java
+@@ -578,7 +578,7 @@ public abstract class BaseJSTypeTestCase extends TestCase {
+   }
+ 
+   protected final void assertTypeEquals(String msg, JSType a, JSType b) {
+-    Asserts.assertTypeEquals(msg, a, b);
++    Asserts.assertTypeEquals(ALL_NATIVE_EXTERN_TYPES, a, b);
+   }
+ 
+   protected final void assertTypeNotEquals(JSType a, JSType b) {

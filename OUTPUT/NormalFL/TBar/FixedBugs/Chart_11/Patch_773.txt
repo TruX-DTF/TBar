@@ -1,0 +1,13 @@
+diff --git a/source/org/jfree/chart/util/ShapeUtilities.java b/source/org/jfree/chart/util/ShapeUtilities.java
+index 31aa6c6..d0ee549 100644
+--- a/source/org/jfree/chart/util/ShapeUtilities.java
++++ b/source/org/jfree/chart/util/ShapeUtilities.java
+@@ -271,7 +271,7 @@ public class ShapeUtilities {
+         if (p1.getWindingRule() != p2.getWindingRule()) {
+             return false;
+         }
+-        PathIterator iterator1 = p1.getPathIterator(null);
++        PathIterator iterator1 = p2.getPathIterator(null);
+         PathIterator iterator2 = p1.getPathIterator(null);
+         double[] d1 = new double[6];
+         double[] d2 = new double[6];

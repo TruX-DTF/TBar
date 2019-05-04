@@ -1,0 +1,12 @@
+diff --git a/src/main/java/org/apache/commons/math/util/ContinuedFraction.java b/src/main/java/org/apache/commons/math/util/ContinuedFraction.java
+index 2c1bd36..dc6cae1 100644
+--- a/src/main/java/org/apache/commons/math/util/ContinuedFraction.java
++++ b/src/main/java/org/apache/commons/math/util/ContinuedFraction.java
+@@ -185,7 +185,7 @@ public abstract class ContinuedFraction {
+             if (Double.isNaN(r)) {
+                 throw new ConvergenceException(
+                   LocalizedFormats.CONTINUED_FRACTION_NAN_DIVERGENCE,
+-                  x);
++                  evaluate(q2, n));
+             }
+             relativeError = FastMath.abs(r / c - 1.0);

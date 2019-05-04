@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/apache/commons/lang3/time/FastDatePrinter.java b/src/main/java/org/apache/commons/lang3/time/FastDatePrinter.java
+index 5c0edda..b9bf75a 100644
+--- a/src/main/java/org/apache/commons/lang3/time/FastDatePrinter.java
++++ b/src/main/java/org/apache/commons/lang3/time/FastDatePrinter.java
+@@ -677,7 +677,7 @@ public class FastDatePrinter implements DatePrinter, Serializable {
+             int max = 0;
+             for (int i=mValues.length; --i >= 0; ) {
+                 int len = mValues[i].length();
+-                if (len > max) {
++                if (max < MEDIUM || (len > max)) {
+                     max = len;
+                 }
+             }

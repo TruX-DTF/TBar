@@ -1,0 +1,2 @@
+Failing tests: 1
+  - org.mockitousage.stubbing.DeepStubsSerializableTest::should_serialize_and_deserialize_mock_created_by_deep_stubs

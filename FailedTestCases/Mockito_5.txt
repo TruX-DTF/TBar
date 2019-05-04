@@ -1,0 +1,2 @@
+Failing tests: 1
+  - org.mockitointegration.NoJUnitDependenciesTest::pure_mockito_should_not_depend_JUnit

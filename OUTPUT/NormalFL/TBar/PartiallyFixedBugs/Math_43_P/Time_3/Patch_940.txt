@@ -1,0 +1,15 @@
+diff --git a/src/main/java/org/joda/time/MutableDateTime.java b/src/main/java/org/joda/time/MutableDateTime.java
+index 310f55d..fe7a725 100644
+--- a/src/main/java/org/joda/time/MutableDateTime.java
++++ b/src/main/java/org/joda/time/MutableDateTime.java
+@@ -720,7 +720,9 @@ public class MutableDateTime
+      * @throws IllegalArgumentException if the value is invalid
+      */
+     public void addWeeks(final int weeks) {
+-            setMillis(getChronology().weeks().add(getMillis(), weeks));
++            if (weeks < MutableDateTime.ROUND_NONE) {
++	setMillis(getChronology().weeks().add(getMillis(), weeks));	}
++
+     }
+ 
+     //-----------------------------------------------------------------------

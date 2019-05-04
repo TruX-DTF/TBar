@@ -1,0 +1,13 @@
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index 08fb954..af094ad 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -2914,7 +2914,7 @@ public final class NodeUtil {
+         // Other op force a local value:
+         //  x = '' + g (x is now an local string)
+         //  x -= g (x is now an local number)
+-        if (isAssignmentOp(value)
++        if (canBeSideEffected(value)
+             || isSimpleOperator(value)
+             || isImmutableValue(value)) {
+           return true;

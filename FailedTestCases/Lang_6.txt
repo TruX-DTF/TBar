@@ -1,0 +1,2 @@
+Failing tests: 1
+  - org.apache.commons.lang3.StringUtilsTest::testEscapeSurrogatePairs

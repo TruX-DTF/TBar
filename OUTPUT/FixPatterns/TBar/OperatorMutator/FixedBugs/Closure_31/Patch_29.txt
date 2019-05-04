@@ -1,0 +1,14 @@
+diff --git a/src/com/google/javascript/jscomp/Compiler.java b/src/com/google/javascript/jscomp/Compiler.java
+index b76bbb5..afba4f0 100644
+--- a/src/com/google/javascript/jscomp/Compiler.java
++++ b/src/com/google/javascript/jscomp/Compiler.java
+@@ -1281,8 +1281,7 @@ public class Compiler extends AbstractCompiler {
+       boolean staleInputs = false;
+ 
+       // Check if the sources need to be re-ordered.
+-      if (options.dependencyOptions.needsManagement() &&
+-          !options.skipAllPasses &&
++      if (options.dependencyOptions.needsManagement() || !options.skipAllPasses &&
+           options.closurePass) {
+         for (CompilerInput input : inputs) {
+           // Forward-declare all the provided types, so that they

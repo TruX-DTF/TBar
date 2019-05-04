@@ -1,0 +1,14 @@
+diff --git a/source/org/jfree/data/DefaultKeyedValues.java b/source/org/jfree/data/DefaultKeyedValues.java
+index 707eb0a..5ec1535 100644
+--- a/source/org/jfree/data/DefaultKeyedValues.java
++++ b/source/org/jfree/data/DefaultKeyedValues.java
+@@ -315,7 +315,8 @@ public class DefaultKeyedValues implements KeyedValues,
+     public void removeValue(int index) {
+         this.keys.remove(index);
+         this.values.remove(index);
+-        if (index < this.keys.size()) {
++        rebuildIndex();
++	if (index < this.keys.size()) {
+         rebuildIndex();
+         }
+     }

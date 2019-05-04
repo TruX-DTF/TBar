@@ -1,0 +1,10 @@
+Failing tests: 9
+  - org.mockito.internal.invocation.InvocationMatcherTest::should_capture_varargs_as_vararg
+  - org.mockitousage.bugs.varargs.VarargsAndAnyObjectPicksUpExtraInvocationsTest::shouldVerifyCorrectlyNumberOfInvocationsWithVarargs
+  - org.mockitousage.bugs.varargs.VarargsNotPlayingWithAnyObjectTest::shouldMatchAnyVararg
+  - org.mockitousage.matchers.CapturingArgumentsTest::should_capture_all_vararg
+  - org.mockitousage.matchers.CapturingArgumentsTest::captures_correctly_when_captor_used_multiple_times
+  - org.mockitousage.matchers.CapturingArgumentsTest::should_capture_vararg
+  - org.mockitousage.matchers.CapturingArgumentsTest::captures_correctly_when_captor_used_on_pure_vararg_method
+  - org.mockitousage.matchers.CapturingArgumentsTest::should_capture_byte_vararg_by_creating_captor_with_primitive_wrapper
+  - org.mockitousage.matchers.CapturingArgumentsTest::should_capture_byte_vararg_by_creating_captor_with_primitive

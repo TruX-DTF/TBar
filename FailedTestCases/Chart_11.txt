@@ -1,0 +1,2 @@
+Failing tests: 1
+  - org.jfree.chart.util.junit.ShapeUtilitiesTests::testEqualGeneralPaths

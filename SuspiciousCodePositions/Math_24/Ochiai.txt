@@ -1,0 +1,17 @@
+org.apache.commons.math3.analysis.FunctionUtils@141
+org.apache.commons.math3.analysis.function.StepFunction@99
+org.apache.commons.math3.analysis.function.StepFunction@96
+org.apache.commons.math3.analysis.function.StepFunction@90
+org.apache.commons.math3.analysis.function.StepFunction@89
+org.apache.commons.math3.analysis.function.StepFunction@87
+org.apache.commons.math3.analysis.function.StepFunction@85
+org.apache.commons.math3.analysis.function.StepFunction@84
+org.apache.commons.math3.optimization.univariate.BrentOptimizer@184
+org.apache.commons.math3.optimization.univariate.BrentOptimizer@183
+org.apache.commons.math3.optimization.univariate.BrentOptimizer@263
+org.apache.commons.math3.optimization.univariate.BrentOptimizer@262
+org.apache.commons.math3.optimization.univariate.BrentOptimizer@211
+org.apache.commons.math3.optimization.univariate.BaseAbstractUnivariateOptimizer@66
+org.apache.commons.math3.optimization.univariate.BrentOptimizer@259
+org.apache.commons.math3.optimization.univariate.BaseAbstractUnivariateOptimizer@142
+org.apache.commons.math3.optimization.univariate.BrentOptimizer@267

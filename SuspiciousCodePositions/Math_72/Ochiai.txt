@@ -1,0 +1,4 @@
+org.apache.commons.math.analysis.solvers.BrentSolver@185
+org.apache.commons.math.analysis.solvers.BrentSolver@184
+org.apache.commons.math.analysis.solvers.BrentSolver@116
+org.apache.commons.math.analysis.solvers.BrentSolver@115

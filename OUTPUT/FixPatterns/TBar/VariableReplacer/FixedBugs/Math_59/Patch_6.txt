@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/apache/commons/math/util/FastMath.java b/src/main/java/org/apache/commons/math/util/FastMath.java
+index 8cba4d4..eca1fff 100644
+--- a/src/main/java/org/apache/commons/math/util/FastMath.java
++++ b/src/main/java/org/apache/commons/math/util/FastMath.java
+@@ -904,7 +904,7 @@ public class FastMath {
+      *  For x between 0 and 1, returns exp(x), uses extended precision
+      *  @param x argument of exponential
+      *  @param result placeholder where to place exp(x) split in two terms
+-     *  for extra precision (i.e. exp(x) = result[0] ?? result[1]
++     *  for extra precision (i.e. exp(x) = result[0] ?? result[1]
+      *  @return exp(x)
+      */
+     private static double slowexp(final double x, final double result[]) {
+@@ -3479,7 +3479,7 @@ public class FastMath {
+      * @return b if a is lesser or equal to b, a otherwise
+      */
+     public static float max(final float a, final float b) {
+-        return (a <= b) ? b : (Float.isNaN(a + b) ? Float.NaN : b);
++        return (a <= b) ? b : (Float.isNaN(a + b) ? Float.NaN : a);
+     }
+ 
+     /** Compute the maximum of two values

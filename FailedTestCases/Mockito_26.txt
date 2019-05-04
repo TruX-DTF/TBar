@@ -1,0 +1,5 @@
+Failing tests: 4
+  - org.mockito.internal.progress.HandyReturnValuesTest::should_default_values_for_primitive
+  - org.mockito.internal.stubbing.defaultanswers.ReturnsEmptyValuesTest::should_return_primitive
+  - org.mockito.internal.stubbing.defaultanswers.ReturnsMocksTest::should_return_the_usual_default_values_for_primitives
+  - org.mockito.internal.stubbing.defaultanswers.ReturnsSmartNullsTest::should_return_the_usual_default_values_for_primitives

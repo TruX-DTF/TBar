@@ -1,0 +1,13 @@
+diff --git a/src/com/google/javascript/jscomp/CompilationLevel.java b/src/com/google/javascript/jscomp/CompilationLevel.java
+index 3645344..ec351b7 100644
+--- a/src/com/google/javascript/jscomp/CompilationLevel.java
++++ b/src/com/google/javascript/jscomp/CompilationLevel.java
+@@ -98,7 +98,7 @@ public enum CompilationLevel {
+     options.checkGlobalThisLevel = CheckLevel.OFF;
+     options.foldConstants = true;
+     options.coalesceVariableNames = true;
+-    options.deadAssignmentElimination = true;
++    options.deadAssignmentElimination = false;
+     options.collapseVariableDeclarations = true;
+     options.convertToDottedProperties = true;
+     options.labelRenaming = true;

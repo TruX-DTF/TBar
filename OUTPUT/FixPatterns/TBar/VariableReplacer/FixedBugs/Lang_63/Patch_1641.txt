@@ -1,0 +1,13 @@
+diff --git a/src/java/org/apache/commons/lang/time/DurationFormatUtils.java b/src/java/org/apache/commons/lang/time/DurationFormatUtils.java
+index 127b927..773ddc6 100644
+--- a/src/java/org/apache/commons/lang/time/DurationFormatUtils.java
++++ b/src/java/org/apache/commons/lang/time/DurationFormatUtils.java
+@@ -431,7 +431,7 @@ public class DurationFormatUtils {
+     }
+     static int reduceAndCorrect(Calendar start, Calendar end, int field, int difference) {
+         end.add( field, -1 * difference );
+-        int endValue = end.get(field);
++        int endValue = start.get(field);
+         int startValue = start.get(field);
+         if (endValue < startValue) {
+             int newdiff = startValue - endValue;

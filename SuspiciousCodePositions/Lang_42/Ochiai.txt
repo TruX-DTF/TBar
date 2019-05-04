@@ -1,0 +1,13 @@
+org.apache.commons.lang.Entities@834
+org.apache.commons.lang.Entities@833
+org.apache.commons.lang.Entities@832
+org.apache.commons.lang.StringEscapeUtils@505
+org.apache.commons.lang.StringEscapeUtils@504
+org.apache.commons.lang.StringEscapeUtils@501
+org.apache.commons.lang.StringEscapeUtils@498
+org.apache.commons.lang.StringEscapeUtils@461
+org.apache.commons.lang.StringEscapeUtils@460
+org.apache.commons.lang.StringEscapeUtils@459
+org.apache.commons.lang.StringEscapeUtils@455
+org.apache.commons.lang.Entities@961
+org.apache.commons.lang.Entities@831

@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/SubLine.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/SubLine.java
+index a9d621a..80638c6 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/SubLine.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/SubLine.java
+@@ -117,7 +117,10 @@ public class SubLine extends AbstractSubHyperplane<Euclidean2D, Euclidean1D> {
+         Vector2D v2D = line1.intersection(line2);
+ 
+         // check location of point with respect to first sub-line
+-        Location loc1 = getRemainingRegion().checkPoint(line1.toSubSpace(v2D));
++        if (v2D == null) {
++	    return null;
++	}
++Location loc1 = getRemainingRegion().checkPoint(line1.toSubSpace(v2D));
+ 
+         // check location of point with respect to second sub-line
+         Location loc2 = subLine.getRemainingRegion().checkPoint(line2.toSubSpace(v2D));

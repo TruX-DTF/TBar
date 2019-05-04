@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/apache/commons/math/ode/nonstiff/AdaptiveStepsizeIntegrator.java b/src/main/java/org/apache/commons/math/ode/nonstiff/AdaptiveStepsizeIntegrator.java
+index 549f109..6d2c16a 100644
+--- a/src/main/java/org/apache/commons/math/ode/nonstiff/AdaptiveStepsizeIntegrator.java
++++ b/src/main/java/org/apache/commons/math/ode/nonstiff/AdaptiveStepsizeIntegrator.java
+@@ -208,7 +208,7 @@ public abstract class AdaptiveStepsizeIntegrator
+ 
+     if (initialStep > 0) {
+       // use the user provided value
+-      return forward ? initialStep : -initialStep;
++      return forward ? t0 : -initialStep;
+     }
+ 
+     // very rough first guess : h = 0.01 * ||y/scale|| / ||y'/scale||

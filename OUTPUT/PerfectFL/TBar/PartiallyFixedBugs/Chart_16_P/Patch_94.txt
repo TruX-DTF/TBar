@@ -1,0 +1,13 @@
+diff --git a/source/org/jfree/data/category/DefaultIntervalCategoryDataset.java b/source/org/jfree/data/category/DefaultIntervalCategoryDataset.java
+index 2efdfcb..ca2e93d 100644
+--- a/source/org/jfree/data/category/DefaultIntervalCategoryDataset.java
++++ b/source/org/jfree/data/category/DefaultIntervalCategoryDataset.java
+@@ -335,7 +335,7 @@ public class DefaultIntervalCategoryDataset extends AbstractSeriesDataset
+         if (categoryKeys == null) {
+             throw new IllegalArgumentException("Null 'categoryKeys' argument.");
+         }
+-        if (categoryKeys.length != this.startData[0].length) {
++        if ((categoryKeys == null)) {
+             throw new IllegalArgumentException(
+                     "The number of categories does not match the data.");
+         }

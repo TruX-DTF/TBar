@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
+index 4b7dbf6..7176801 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
+@@ -727,7 +727,7 @@ public class CMAESOptimizer
+                 double negcovMax = (1. - negminresidualvariance) /
+                         square(arnormsInv).multiply(weights).getEntry(0, 0);
+                 if (negccov > negcovMax) {
+-                    negccov = negcovMax;
++                    negccov /= negcovMax;
+                 }
+                 arzneg = times(arzneg, repmat(arnormsInv, dimension, 1));
+                 RealMatrix artmp = BD.multiply(arzneg);

@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/plot/XYPlot.java b/source/org/jfree/chart/plot/XYPlot.java
+index ec26162..1dd3ed6 100644
+--- a/source/org/jfree/chart/plot/XYPlot.java
++++ b/source/org/jfree/chart/plot/XYPlot.java
+@@ -4490,14 +4490,17 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable,
+                     }
+                 }
+                 
+-                    Collection c = r.getAnnotations();
++                    if (r != null) {
++	Collection c = r.getAnnotations();
+                     Iterator i = c.iterator();
+                     while (i.hasNext()) {
+                         XYAnnotation a = (XYAnnotation) i.next();
+                         if (a instanceof XYAnnotationBoundsInfo) {
+                             includedAnnotations.add(a);
+                         }
+-                    }
++                    }
++	}
++
+             }
+         }

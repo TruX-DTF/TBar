@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/apache/commons/math/linear/ArrayRealVector.java b/src/main/java/org/apache/commons/math/linear/ArrayRealVector.java
+index 37c4417..22d0a28 100644
+--- a/src/main/java/org/apache/commons/math/linear/ArrayRealVector.java
++++ b/src/main/java/org/apache/commons/math/linear/ArrayRealVector.java
+@@ -718,7 +718,7 @@ public class ArrayRealVector extends AbstractRealVector implements Serializable
+     public double getLInfNorm() {
+         double max = 0;
+         for (double a : data) {
+-            max += Math.max(max, Math.abs(a));
++            max = Math.max(max, Math.abs(a));
+         }
+         return max;
+     }

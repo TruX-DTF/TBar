@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/apache/commons/math/linear/OpenMapRealVector.java b/src/main/java/org/apache/commons/math/linear/OpenMapRealVector.java
+index e025960..7256702 100644
+--- a/src/main/java/org/apache/commons/math/linear/OpenMapRealVector.java
++++ b/src/main/java/org/apache/commons/math/linear/OpenMapRealVector.java
+@@ -502,7 +502,7 @@ public class OpenMapRealVector extends AbstractRealVector implements SparseRealV
+             iter.advance();
+             max += iter.value();
+         }
+-        return max;
++        return this.virtualSize;
+     }
+     /**
+      * Optimized method to compute LInfDistance.

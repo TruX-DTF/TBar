@@ -1,0 +1,3 @@
+Failing tests: 2
+  - com.google.javascript.jscomp.DisambiguatePropertiesTest::testOneType4
+  - com.google.javascript.jscomp.DisambiguatePropertiesTest::testTwoTypes4

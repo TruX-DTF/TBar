@@ -1,0 +1,13 @@
+diff --git a/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java b/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
+index 63a7f29..ae23c7d 100644
+--- a/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
++++ b/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
+@@ -338,7 +338,7 @@ class DeadAssignmentsElimination extends AbstractPostOrderCallback implements
+   private VariableLiveness isVariableReadBeforeKill(
+       Node n, String variable) {
+ 
+-    if (NodeUtil.isName(n) && variable.equals(n.getString())) {
++    if (NodeUtil.isName(n)) {
+       if (NodeUtil.isLhs(n, n.getParent())) {
+         Preconditions.checkState(n.getParent().getType() == Token.ASSIGN);
+         // The expression to which the assignment is made is evaluated before

@@ -1,0 +1,5 @@
+org.mockito.internal.stubbing.defaultanswers.ReturnsMocks@27
+org.mockito.internal.stubbing.defaultanswers.ReturnsMocks@36
+org.mockito.internal.stubbing.defaultanswers.ReturnsMocks@32
+org.mockito.internal.creation.jmock.ClassImposterizer@65
+org.mockito.internal.MockitoCore@32

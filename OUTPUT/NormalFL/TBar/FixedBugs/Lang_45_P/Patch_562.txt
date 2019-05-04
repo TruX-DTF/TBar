@@ -1,0 +1,12 @@
+diff --git a/src/java/org/apache/commons/lang/WordUtils.java b/src/java/org/apache/commons/lang/WordUtils.java
+index 42bd883..e1b2a21 100644
+--- a/src/java/org/apache/commons/lang/WordUtils.java
++++ b/src/java/org/apache/commons/lang/WordUtils.java
+@@ -619,7 +619,7 @@ public class WordUtils {
+             upper = str.length();
+         }
+         // if upper is less than lower, raise it to lower
+-        if (upper < lower) {
++        if ((upper < lower) && (upper != str.length())) {
+             upper = lower;
+         }

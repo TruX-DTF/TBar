@@ -1,0 +1,13 @@
+diff --git a/src/main/java/org/apache/commons/math/util/MathUtils.java b/src/main/java/org/apache/commons/math/util/MathUtils.java
+index 46368dc..fed463c 100644
+--- a/src/main/java/org/apache/commons/math/util/MathUtils.java
++++ b/src/main/java/org/apache/commons/math/util/MathUtils.java
+@@ -1623,7 +1623,7 @@ public final class MathUtils {
+     public static double distance(int[] p1, int[] p2) {
+       int sum = 0;
+       for (int i = 0; i < p1.length; i++) {
+-          final int dp = p1[i] - p2[i];
++          final float dp = p1[i] - p2[i];
+           sum += dp * dp;
+       }
+       return Math.sqrt(sum);

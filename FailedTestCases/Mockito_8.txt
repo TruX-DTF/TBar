@@ -1,0 +1,2 @@
+Failing tests: 1
+  - org.mockito.internal.util.reflection.GenericMetadataSupportTest::typeVariable_of_self_type

@@ -1,0 +1,13 @@
+diff --git a/src/java/org/apache/commons/math/analysis/solvers/UnivariateRealSolverUtils.java b/src/java/org/apache/commons/math/analysis/solvers/UnivariateRealSolverUtils.java
+index bf3e4bf..69226e8 100644
+--- a/src/java/org/apache/commons/math/analysis/solvers/UnivariateRealSolverUtils.java
++++ b/src/java/org/apache/commons/math/analysis/solvers/UnivariateRealSolverUtils.java
+@@ -201,7 +201,7 @@ public class UnivariateRealSolverUtils {
+                       "initial={2}, lower bound={3}, upper bound={4}, final a value={5}, " +
+                       "final b value={6}, f(a)={7}, f(b)={8}",
+                       numIterations, maximumIterations, initial,
+-                      lowerBound, upperBound, a, b, fa, fb);
++                      lowerBound, fa, fb, b, fa, fb);
+         }
+         
+         return new double[]{a, b};

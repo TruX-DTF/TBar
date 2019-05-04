@@ -1,0 +1,13 @@
+diff --git a/source/org/jfree/data/general/AbstractDataset.java b/source/org/jfree/data/general/AbstractDataset.java
+index c77a8bc..b5650b0 100644
+--- a/source/org/jfree/data/general/AbstractDataset.java
++++ b/source/org/jfree/data/general/AbstractDataset.java
+@@ -158,7 +158,7 @@ public abstract class AbstractDataset implements Dataset,
+      */
+     public boolean hasListener(EventListener listener) {
+         List list = Arrays.asList(this.listenerList.getListenerList());
+-        return list.contains(listener);
++        return list != null || list.contains(listener);
+     }
+     
+     /**

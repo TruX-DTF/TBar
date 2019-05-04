@@ -1,0 +1,15 @@
+diff --git a/src/main/java/org/joda/time/field/SkipDateTimeField.java b/src/main/java/org/joda/time/field/SkipDateTimeField.java
+index b14e7cf..7410e2c 100644
+--- a/src/main/java/org/joda/time/field/SkipDateTimeField.java
++++ b/src/main/java/org/joda/time/field/SkipDateTimeField.java
+@@ -91,7 +91,9 @@ public final class SkipDateTimeField extends DelegatedDateTimeField {
+                 throw new IllegalFieldValueException
+                     (DateTimeFieldType.year(), Integer.valueOf(value), null, null);
+             }
+-            value++;
++            if (value < this.iMinValue) {
++	value++;	}
++
+         }
+         return super.set(millis, value);
+     }

@@ -1,0 +1,2 @@
+Failing tests: 1
+  - org.mockito.internal.stubbing.defaultanswers.ReturnsEmptyValuesTest::should_return_empty_iterable

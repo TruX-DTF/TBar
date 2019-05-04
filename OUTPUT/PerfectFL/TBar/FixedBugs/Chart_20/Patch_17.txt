@@ -1,0 +1,12 @@
+diff --git a/source/org/jfree/chart/plot/ValueMarker.java b/source/org/jfree/chart/plot/ValueMarker.java
+index 075683d..58d5289 100644
+--- a/source/org/jfree/chart/plot/ValueMarker.java
++++ b/source/org/jfree/chart/plot/ValueMarker.java
+@@ -92,7 +92,7 @@ public class ValueMarker extends Marker {
+      */
+     public ValueMarker(double value, Paint paint, Stroke stroke, 
+                        Paint outlinePaint, Stroke outlineStroke, float alpha) {
+-        super(paint, stroke, paint, stroke, alpha);
++        super(paint, stroke, outlinePaint, outlineStroke, alpha);
+         this.value = value;
+     }

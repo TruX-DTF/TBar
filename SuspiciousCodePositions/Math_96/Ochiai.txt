@@ -1,0 +1,6 @@
+org.apache.commons.math.complex.Complex@280
+org.apache.commons.math.complex.Complex@277
+org.apache.commons.math.complex.Complex@363
+org.apache.commons.math.complex.Complex@358
+org.apache.commons.math.complex.Complex@355
+org.apache.commons.math.complex.Complex@258

@@ -1,0 +1,15 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/linear/SimplexSolver.java b/src/main/java/org/apache/commons/math3/optimization/linear/SimplexSolver.java
+index a84438d..7ffbcea 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/linear/SimplexSolver.java
++++ b/src/main/java/org/apache/commons/math3/optimization/linear/SimplexSolver.java
+@@ -142,7 +142,9 @@ public class SimplexSolver extends AbstractLinearOptimizer {
+                     for (; i < tableau.getWidth() - 1 && minRow != row; i++) {
+                         if (row == tableau.getBasicRow(i)) {
+                             if (i < minIndex) {
+-                                minIndex = i;
++                                if (i > this.maxUlps) {
++	minIndex = i;	}
++
+                                 minRow = row;
+                             }
+                         }

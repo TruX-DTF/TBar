@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math/stat/descriptive/SummaryStatistics.java b/src/main/java/org/apache/commons/math/stat/descriptive/SummaryStatistics.java
+index 1203d51..5e56b45 100644
+--- a/src/main/java/org/apache/commons/math/stat/descriptive/SummaryStatistics.java
++++ b/src/main/java/org/apache/commons/math/stat/descriptive/SummaryStatistics.java
+@@ -575,7 +575,8 @@ public class SummaryStatistics implements StatisticalSummary, Serializable {
+      */
+     public void setGeoMeanImpl(StorelessUnivariateStatistic geoMeanImpl) {
+         checkEmpty();
+-        this.geoMeanImpl = geoMeanImpl;
++        setSumImpl(geoMeanImpl);
++	this.geoMeanImpl = geoMeanImpl;
+     }
+ 
+     /**

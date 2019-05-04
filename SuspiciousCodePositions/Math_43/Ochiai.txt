@@ -1,0 +1,15 @@
+org.apache.commons.math.stat.descriptive.SummaryStatistics@647
+org.apache.commons.math.stat.descriptive.SummaryStatistics@643
+org.apache.commons.math.stat.descriptive.SummaryStatistics@637
+org.apache.commons.math.stat.descriptive.SummaryStatistics@636
+org.apache.commons.math.stat.descriptive.SummaryStatistics@635
+org.apache.commons.math.stat.descriptive.SummaryStatistics@579
+org.apache.commons.math.stat.descriptive.SummaryStatistics@578
+org.apache.commons.math.stat.descriptive.SummaryStatistics@577
+org.apache.commons.math.stat.descriptive.SummaryStatistics@608
+org.apache.commons.math.stat.descriptive.SummaryStatistics@607
+org.apache.commons.math.stat.descriptive.SummaryStatistics@606
+org.apache.commons.math.stat.descriptive.moment.Variance@420
+org.apache.commons.math.stat.descriptive.SummaryStatistics@168
+org.apache.commons.math.stat.descriptive.SummaryStatistics@167
+org.apache.commons.math.stat.descriptive.SummaryStatistics@164

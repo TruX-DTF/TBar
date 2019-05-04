@@ -1,0 +1,2 @@
+Failing tests: 1
+  - org.joda.time.TestPartial_Basics::testWith_baseAndArgHaveNoRange

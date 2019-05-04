@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math/linear/SingularValueDecompositionImpl.java b/src/main/java/org/apache/commons/math/linear/SingularValueDecompositionImpl.java
+index 1436881..0208549 100644
+--- a/src/main/java/org/apache/commons/math/linear/SingularValueDecompositionImpl.java
++++ b/src/main/java/org/apache/commons/math/linear/SingularValueDecompositionImpl.java
+@@ -260,7 +260,8 @@ public class SingularValueDecompositionImpl implements SingularValueDecompositio
+                         }
+                 }
+                         for (int j = 0; j < p; ++j) {
+-                            wData[p - 1][j] = ei1[j] * mainBidiagonal[p - 1] / singularValues[j];
++                            if (singularValues == null) singularValues = this.secondaryBidiagonal;
++ wData[p - 1][j] = ei1[j] * mainBidiagonal[p - 1] / singularValues[j];
+                         }
+                 for (int i = p; i < n; ++i) {
+                     wData[i] = new double[p];

@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math/stat/descriptive/SummaryStatistics.java b/src/main/java/org/apache/commons/math/stat/descriptive/SummaryStatistics.java
+index 1203d51..3fdb645 100644
+--- a/src/main/java/org/apache/commons/math/stat/descriptive/SummaryStatistics.java
++++ b/src/main/java/org/apache/commons/math/stat/descriptive/SummaryStatistics.java
+@@ -604,7 +604,8 @@ public class SummaryStatistics implements StatisticalSummary, Serializable {
+      */
+     public void setMeanImpl(StorelessUnivariateStatistic meanImpl) {
+         checkEmpty();
+-        this.meanImpl = meanImpl;
++        setSumLogImpl(meanImpl);
++	this.meanImpl = meanImpl;
+     }
+ 
+     /**

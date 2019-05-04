@@ -1,0 +1,13 @@
+diff --git a/src/java/org/apache/commons/math/complex/ComplexFormat.java b/src/java/org/apache/commons/math/complex/ComplexFormat.java
+index b404bc4..7759b09 100644
+--- a/src/java/org/apache/commons/math/complex/ComplexFormat.java
++++ b/src/java/org/apache/commons/math/complex/ComplexFormat.java
+@@ -375,7 +375,7 @@ public class ComplexFormat extends Format implements Serializable {
+         startIndex = pos.getIndex();
+         int endIndex = startIndex + n;
+         if (
+-            source.substring(startIndex, endIndex).compareTo(
++            source.substring(startIndex).compareTo(
+             getImaginaryCharacter()) != 0) {
+             // set index back to initial, error index should be the start index
+             // character examined.

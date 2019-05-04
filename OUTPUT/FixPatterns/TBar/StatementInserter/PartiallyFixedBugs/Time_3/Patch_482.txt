@@ -1,0 +1,15 @@
+diff --git a/src/main/java/org/joda/time/MutableDateTime.java b/src/main/java/org/joda/time/MutableDateTime.java
+index 310f55d..15806c4 100644
+--- a/src/main/java/org/joda/time/MutableDateTime.java
++++ b/src/main/java/org/joda/time/MutableDateTime.java
+@@ -699,7 +699,9 @@ public class MutableDateTime
+      * @throws IllegalArgumentException if the value is invalid
+      */
+     public void addMonths(final int months) {
+-            setMillis(getChronology().months().add(getMillis(), months));
++            if (months > ROUND_HALF_FLOOR) {
++	setMillis(getChronology().months().add(getMillis(), months));	}
++
+     }
+ 
+     //-----------------------------------------------------------------------

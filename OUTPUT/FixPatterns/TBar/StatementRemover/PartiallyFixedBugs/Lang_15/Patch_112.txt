@@ -1,0 +1,15 @@
+diff --git a/src/main/java/org/apache/commons/lang3/reflect/TypeUtils.java b/src/main/java/org/apache/commons/lang3/reflect/TypeUtils.java
+index 415cefa..e410f84 100644
+--- a/src/main/java/org/apache/commons/lang3/reflect/TypeUtils.java
++++ b/src/main/java/org/apache/commons/lang3/reflect/TypeUtils.java
+@@ -672,9 +672,7 @@ public class TypeUtils {
+                 : new HashMap<TypeVariable<?>, Type>(subtypeVarAssigns);
+ 
+         // has target class been reached?
+-        if (cls.getTypeParameters().length > 0 || toClass.equals(cls)) {
+-            return typeVarAssigns;
+-        }
++        
+ 
+         // walk the inheritance hierarchy until the target class is reached
+         return getTypeArguments(getClosestParentType(cls, toClass), toClass, typeVarAssigns);
