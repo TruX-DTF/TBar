@@ -27,16 +27,16 @@ public class MainPerfectFL {
 					+ "\t<isTestFixPatterns>: true - try all fix patterns for each bug, false - perfect fault localization configuration.");
 			System.exit(0);
 		}
-		String bugDataPath = args[0]; //https://github.com/rjust/defects4j
-		String bugId = args[1]; //"Math_50";
-		String defects4jHome = args[2]; // "/Users/kui.liu/Public/git/defects4j/";
-		boolean isTestFixPatterns = Boolean.valueOf(args[3]); //true;
+		String bugDataPath = args[0];//"/Users/kui.liu/Public/Defects4JData/";//
+		String bugId = args[1]; //"Chart_1";// 
+		String defects4jHome = args[2];//"/Users/kui.liu/Public/git/defects4j/";//
+		boolean isTestFixPatterns = Boolean.valueOf(args[3]);//false;//
 		String granularityStr = "Line";
 		System.out.println(bugId);
 		if ("line".equalsIgnoreCase(granularityStr) || "l".equalsIgnoreCase(granularityStr)) {
 			granularity = Granularity.Line;
 			if (isTestFixPatterns) Configuration.outputPath += "FixPatterns/";
-			else Configuration.outputPath += "PerfecfFL/";
+			else Configuration.outputPath += "PerfectFL/";
 //		} else if ("file".equalsIgnoreCase(granularityStr) || "f".equalsIgnoreCase(granularityStr)) {
 //			granularity = Granularity.File;
 //			Configuration.outputPath += "File/";
