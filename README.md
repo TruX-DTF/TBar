@@ -31,14 +31,14 @@ III. Prepare Defects4J Bugs
  1. Fixing Defects4J bugs with perfect fault localization configuration.
  - `./PerfectFLTBarRunner.sh <Bug_Data_Path> <Bug_ID> <defects4j_Home> <true/false>`
  
- Example: `./PerfectFLTBarRunner.sh D4J/projects/ Chart_1 D4J/defects4j/ false` to fix bug Chart_1 with perfect fault localization configuration.
+ Example: `./PerfectFLTBarRunner.sh D4J/projects/ Chart_8 D4J/defects4j/ false` to fix bug Chart_8 with perfect fault localization configuration.
  
- `./PerfectFLTBarRunner.sh D4J/projects/ Chart_1 D4J/defects4j/ true` tries to fix bug Chart_1 with all possible matching fix patterns.
+ `./PerfectFLTBarRunner.sh D4J/projects/ Chart_8 D4J/defects4j/ true` tries to fix bug Chart_8 with all possible matching fix patterns.
  
  2. Fixing Defects4J bugs with normal fault localization configuration.
  - `./NormalFLTBarRunner.sh <Bug_Data_Path> <Bug_ID> <defects4j_Home>`
  
- Example: `./NormalFLTBarRunner.sh D4J/projects/ Chart_1 D4J/defects4j/`. 
+ Example: `./NormalFLTBarRunner.sh D4J/projects/ Chart_8 D4J/defects4j/`. 
  
  If it executes failed because of the paths of <Bug_Data_Path> and <defects4j_Home>, please use their absolute paths.
  
