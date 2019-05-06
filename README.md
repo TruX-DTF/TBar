@@ -22,7 +22,8 @@ III. Prepare Defects4J Bugs
  
  2. Check out and compile each bug.
  - `./checkoutD4JBugs.sh`
-   > It will take a long time to prepare this data. We would like to recommend the data from [zenodo]() directly.
+    
+    It will take a long time to prepare this data. We would like to recommend the data from [zenodo]() directly.
  
   If you fail to install defects4j, checkout or compile defects4j bugs, please reference these [introductions](https://github.com/rjust/defects4j#steps-to-set-up-defects4j).
  
