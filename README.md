@@ -1,3 +1,4 @@
+
 # TBar
 Template-based automated program repair
 
@@ -21,23 +22,20 @@ III. Prepare Defects4J Bugs
  
  2. Check out and compile each bug.
  - `./checkoutD4JBugs.sh`
- It will take a long time to prepare this data. We would like to recommend the data from [zenodo]() directly.
+  It will take a long time to prepare this data. We would like to recommend the data from [zenodo]() directly.
  
- If you fail to install defects4j, checkout or compile defects4j bugs, please reference these [introductions](https://github.com/rjust/defects4j#steps-to-set-up-defects4j).
+  If you fail to install defects4j, checkout or compile defects4j bugs, please reference these [introductions](https://github.com/rjust/defects4j#steps-to-set-up-defects4j).
  
  
  IV. Run TBar
  ------------
  1. Fixing Defects4J bugs with perfect fault localization configuration.
  - `./PerfectFLTBarRunner.sh <Bug_Data_Path> <Bug_ID> <defects4j_Home> <true/false>`
- 
- Example: `./PerfectFLTBarRunner.sh D4J/projects/ Chart_8 D4J/defects4j/ false` to fix bug Chart_8 with perfect fault localization configuration.
- 
- `./PerfectFLTBarRunner.sh D4J/projects/ Chart_8 D4J/defects4j/ true` tries to fix bug Chart_8 with all possible matching fix patterns.
+    Example: `./PerfectFLTBarRunner.sh D4J/projects/ Chart_8 D4J/defects4j/ false` to fix bug Chart_8 with perfect fault localization configuration.
+    `./PerfectFLTBarRunner.sh D4J/projects/ Chart_8 D4J/defects4j/ true` tries to fix bug Chart_8 with all possible matching fix patterns.
  
  2. Fixing Defects4J bugs with normal fault localization configuration.
  - `./NormalFLTBarRunner.sh <Bug_Data_Path> <Bug_ID> <defects4j_Home>`
- 
  Example: `./NormalFLTBarRunner.sh D4J/projects/ Chart_8 D4J/defects4j/`. 
  
  If it executes failed because of the paths of <Bug_Data_Path> and <defects4j_Home>, please use their absolute paths.
