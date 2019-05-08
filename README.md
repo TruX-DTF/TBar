@@ -52,12 +52,12 @@ III. Prepare Defects4J Bugs
   |--- D4J                     :  Defects4J information
   |--- FailedTestCases         :  Failed test cases of each Defects4J bug
   |--- lib                     :  GZoltar jar files
-  |--- OUTPUT                  :  Generated patches
+  |--- Results                 :  Generated patches
   |------ FixPatterns          :  Bugs fixed by each fix pattern
   |------ PerfectFL            :  Bugs fixed with perfect fault localization configuration
   |------ NormalFL             :  Bugs fixed with normal fault localization configuration
   |--- src                     :  source code
-  |--- SuspiciousCodePositions :  Bug positions localized by GZoltar
+  |--- SuspiciousCodePositions :  Bug positions localized with GZoltar
   |--- target                  :  binary code
 ```
 
