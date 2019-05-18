@@ -16,7 +16,7 @@ II. Overview of TBar
 
 ![The overview bug fixing process with TBar.\label{step}](./figure/overview.png)
 
-<img src="./figure/algorithm.png" width="200">
+<img src="./figure/algorithm.png" width="500">
 
 
 III. Prepare Defects4J Bugs
