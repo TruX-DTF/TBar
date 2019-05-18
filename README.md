@@ -16,6 +16,9 @@ II. Overview of TBar
 
 ![The overview bug fixing process with TBar.\label{step}](./figure/overview.png)
 
+<img src="./figure/algorithm.png" width="50">
+![The algorithm of fix pattern selection and patch generation in TBar.\label{step}](./figure/algorithm.png)
+
 
 III. Prepare Defects4J Bugs
 ---------------------------
