@@ -1,3 +1,7 @@
+#!/bin/bash
+
+export PATH=$(pwd)/D4J/defects4j/framework/bin/:$PATH
+
 dir=D4J/projects/ # Store the buggy projects.
 
 proj=Chart
