@@ -7,7 +7,7 @@
 ######  Update (2019-07-10):
 Updates:
   * PerfectFL results: 
-      * correct : 71, incorrect 31, precision: 71/(71+31)=70.3% 
+      * correct : 71, incorrect 30, precision: 71/(71+30)=70.3% 
   * NormalFL results: 
       * correct : 42, incorrect 39, precision: 42/(42+39)=51.9%
   * Explanation:
