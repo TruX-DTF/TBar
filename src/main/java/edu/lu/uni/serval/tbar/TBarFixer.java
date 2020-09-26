@@ -429,7 +429,7 @@ public class TBarFixer extends AbstractFixer {
 					}
 				}
 				ft = null;
-//				if (this.patchId >= 10000) break;
+				if (this.patchId >= 10000) break;
 			}
 			
 			if (!nullChecked) {
