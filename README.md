@@ -8,11 +8,15 @@ I. Requirement
  - [Java 1.7](https://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html)
  - [Defects4J](https://github.com/rjust/defects4j)
  - [GZoltar](https://github.com/SerVal-DTF/TBar/tree/master/lib)
+ - [SVN >= 1.8](https://subversion.apache.org/packages.html)
+ - [perl >= 5.0.10](https://www.perl.org/get.html)
 
 II. Overview of TBar
 --------------------
 
 ![The overview bug fixing process with TBar.\label{step}](./figure/overview.png)
+
+<img src="./figure/algorithm.png" width="500">
 
 
 III. Prepare Defects4J Bugs
@@ -23,11 +27,10 @@ III. Prepare Defects4J Bugs
  2. Check out and compile each bug.
  - `./checkoutD4JBugs.sh`
     
-    It will take a long time to prepare this data. We would like to recommend the data from [zenodo](https://zenodo.org/record/2669127#.XNA2I5MzZ0s) directly.
- 
   If you fail to install defects4j, checkout or compile defects4j bugs, please reference these [introductions](https://github.com/rjust/defects4j#steps-to-set-up-defects4j).
  
- 
+  The docker image of TBar is available: [TBar](https://cloud.docker.com/u/kuiliu/repository/docker/kuiliu/tbar).
+  
  IV. Run TBar
  ------------
  1. Fixing Defects4J bugs with perfect fault localization configuration.
