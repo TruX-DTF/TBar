@@ -19,7 +19,7 @@ import edu.lu.uni.serval.tbar.config.Configuration;
 
 public class ShellUtils {
 
-	public static String shellRun(List<String> asList, String buggyProject) throws IOException {
+	public static String shellRun(List<String> asList, String buggyProject, int type) throws IOException {
 		String fileName;
         String cmd;
         if (System.getProperty("os.name").toLowerCase().startsWith("win")){
@@ -54,17 +54,20 @@ public class ShellUtils {
         batFile.deleteOnExit();
         
         Process process= Runtime.getRuntime().exec(cmd);
-        String results = ShellUtils.getShellOut(process);
+        String results = ShellUtils.getShellOut(process, type);
         batFile.delete();
         return results;
 	}
 
-	private static String getShellOut(Process process) {
+	private static String getShellOut(Process process, int type) {
 		ExecutorService service = Executors.newSingleThreadExecutor();
         Future<String> future = service.submit(new ReadShellProcess(process));
         String returnString = "";
         try {
-            returnString = future.get(Configuration.SHELL_RUN_TIMEOUT, TimeUnit.SECONDS);
+            if (type == 2)
+            	returnString = future.get(Configuration.TEST_SHELL_RUN_TIMEOUT, TimeUnit.SECONDS);
+            else 
+            	returnString = future.get(Configuration.SHELL_RUN_TIMEOUT, TimeUnit.SECONDS);
         } catch (InterruptedException e){
             future.cancel(true);
 //            e.printStackTrace();

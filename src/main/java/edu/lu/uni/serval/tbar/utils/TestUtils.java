@@ -81,7 +81,7 @@ public class TestUtils {
 		try {
 			String buggyProject = projectName.substring(projectName.lastIndexOf("/") + 1);
 			//which java\njava -version\n
-            String result = ShellUtils.shellRun(Arrays.asList("cd " + projectName + "\n", defects4jPath + "framework/bin/defects4j " + cmdType + "\n"), buggyProject);//"defects4j " + cmdType + "\n"));//
+            String result = ShellUtils.shellRun(Arrays.asList("cd " + projectName + "\n", defects4jPath + "framework/bin/defects4j " + cmdType + "\n"), buggyProject, cmdType.equals("test") ? 2 : 1);//"defects4j " + cmdType + "\n"));//
             return result.trim();
         } catch (IOException e){
         	e.printStackTrace();
@@ -92,7 +92,7 @@ public class TestUtils {
 	public static String recoverWithGitCmd(String projectName) {
 		try {
 			String buggyProject = projectName.substring(projectName.lastIndexOf("/") + 1);
-            ShellUtils.shellRun(Arrays.asList("cd " + projectName + "\n", "git checkout -- ."), buggyProject);
+            ShellUtils.shellRun(Arrays.asList("cd " + projectName + "\n", "git checkout -- ."), buggyProject, 1);
             return "";
         } catch (IOException e){
             return "Failed to recover.";
@@ -102,7 +102,16 @@ public class TestUtils {
 	public static String readPatch(String projectName) {
 		try {
 			String buggyProject = projectName.substring(projectName.lastIndexOf("/") + 1);
-            return ShellUtils.shellRun(Arrays.asList("cd " + projectName + "\n", "git diff"), buggyProject).trim();
+            return ShellUtils.shellRun(Arrays.asList("cd " + projectName + "\n", "git diff"), buggyProject, 1).trim();
+        } catch (IOException e){
+            return null;
+        }
+	}
+
+	public static String checkout(String projectName) {
+		try {
+			String buggyProject = projectName.substring(projectName.lastIndexOf("/") + 1);
+            return ShellUtils.shellRun(Arrays.asList("cd " + projectName + "\n", "git checkout -- ."), buggyProject, 1).trim();
         } catch (IOException e){
             return null;
         }
