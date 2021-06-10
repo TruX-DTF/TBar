@@ -4,7 +4,6 @@ export PATH=$(pwd)/D4J/defects4j/framework/bin/:$PATH
 
 dir=D4J/projects/ # Store the buggy projects.
 
-<<COM
 
 proj=Chart
 for bug in $(seq 1 26)
@@ -40,8 +39,6 @@ do
 	defects4j compile
 	cd ../../../
 done
-
-COM
 
 proj=Closure
 closure_deprecated=( 63 93 )
