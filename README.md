@@ -67,3 +67,27 @@ III. Prepare Defects4J Bugs
 ----
 
 __ALL__ suggestions are welcomed.
+
+
+### Docker for TBar
+docker run --name=tbar -it \
+--mount type=bind,src=/home/aidan/TBar,dst=/home \
+kuiliu/tbar
+
+./installD4J.sh
+
+export PATH=$PATH:/home/D4J/defects4j/framework/bin
+
+D4J_HOME='/home/D4J/defects4j'
+DEFECTS4J_HOME='/home/D4J/defects4j'
+export D4J_HOME
+export DEFECTS4J_HOME
+
+./checkoutD4JBugs.sh
+
+### Run Tbar
+mvn exec:java -Dexec.mainClass=edu.lu.uni.serval.tbar.main.MainPerfectFL -Dexec.args="/home/TBar/D4J/projects/ Chart_4 /home/defects4j/ false"
+### compile Tbar
+mvn compile -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true -Dhttps.protocols=TLSv1.2
+
+chmod -R a+rw /home
