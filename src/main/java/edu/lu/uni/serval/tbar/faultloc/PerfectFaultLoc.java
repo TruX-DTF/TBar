@@ -9,7 +9,6 @@ import edu.lu.uni.serval.tbar.utils.SuspiciousPosition;
 import edu.lu.uni.serval.tbar.dataprepare.DataPreparer;
 
 public class PerfectFaultLoc extends AbstractFaultLoc {
-    private List<SuspiciousPosition> suspiciousCodeList = new ArrayList<>();
 
     public PerfectFaultLoc(DataPreparer d, String dataType, String buggyProject, String filePath) {
         super(d,dataType,buggyProject);
@@ -47,4 +46,31 @@ public class PerfectFaultLoc extends AbstractFaultLoc {
 		}
     }
 
-}
+/* Claire says: there is clearly a way to do line-level perfect FL in this code but
+   I don't see anything using it.
+   
+private List<String> readKnownFileLevelBugPositions() {
+		List<String> buggyFileList = new ArrayList<>();
+		
+		String[] posArray = FileHelper.readFile(Configuration.knownBugPositions).split("\n");
+		Boolean isBuggyProject = null;
+		for (String pos : posArray) {
+			if (isBuggyProject == null || isBuggyProject) {
+				if (pos.startsWith(this.buggyProject + "@")) {
+					isBuggyProject = true;
+					
+					String[] elements = pos.split("@");
+	            	String classPath = elements[1];
+	            	String shortSrcPath = dp.srcPath.substring(dp.srcPath.indexOf(this.buggyProject) + this.buggyProject.length() + 1);
+	            	classPath = classPath.substring(shortSrcPath.length(), classPath.length() - 5).replace("/", ".");
+
+	            	if (!buggyFileList.contains(classPath)) {
+	            		buggyFileList.add(classPath);
+	            	}
+				} else if (isBuggyProject!= null && isBuggyProject) isBuggyProject = false;
+			} else if (!isBuggyProject) break;
+		}
+		return buggyFileList;
+	}
+ */}
+

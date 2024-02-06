@@ -21,6 +21,9 @@ public abstract class AbstractFaultLoc {
     protected String dataType = "";
     protected String buggyProject = "";
 	protected static Logger log = LoggerFactory.getLogger(AbstractFaultLoc.class);
+    protected List<SuspiciousPosition> suspiciousCodeList = new ArrayList<>();
+
+	public List<SuspiciousPosition> getSuspiciousCodeList() { return this.suspiciousCodeList; }
 
     public AbstractFaultLoc(DataPreparer d, String dt, String project) {
         dp = d;

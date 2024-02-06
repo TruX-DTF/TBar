@@ -151,7 +151,8 @@ public class Main {
 				Configuration.outputPath += "PerfectFL/";
 			}
 			} else {
-				faultloc = new NormalFaultLoc(fixer.getDataPreparer(), fixer.dataType, projectName, Configuration.suspPositionsFilePath);
+				// fixme: there is code to do line-level vs. file-level localization for some reason 
+				faultloc = new NormalFaultLoc(fixer.getDataPreparer(), fixer.dataType, projectName, Configuration.suspPositionsFilePath, Configuration.faultLocalizationMetric);
 				Configuration.outputPath += "NormalFL/";
 				fixer.suspCodePosFile = new File(Configuration.suspPositionsFilePath);
 				if (Integer.MAX_VALUE == fixer.minErrorTest) {

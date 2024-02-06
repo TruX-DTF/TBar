@@ -67,18 +67,8 @@ public class TBarFixer extends AbstractFixer {
 		if (!dp.validPaths) return;
 		
 		// Read suspicious positions.
-		List<SuspiciousPosition> suspiciousCodeList = null;
-		if (granularity == Granularity.Line) {
-			// It assumes that the line-level bug positions are known.
-			suspiciousCodeList = readKnownBugPositionsFromFile();
-		} else if (granularity == Granularity.File) {
-			// It assumes that the file-level bug positions are known.
-			List<String> buggyFileList = readKnownFileLevelBugPositions();
-			suspiciousCodeList = readSuspiciousCodeFromFile(buggyFileList);
-		} else {
-			suspiciousCodeList = readSuspiciousCodeFromFile();
-		}
-		
+		List<SuspiciousPosition> suspiciousCodeList = faultloc.getSuspiciousCodeList();
+
 		if (suspiciousCodeList == null) return;
 		
 		List<SuspCodeNode> triedSuspNode = new ArrayList<>();
@@ -115,69 +105,8 @@ public class TBarFixer extends AbstractFixer {
 		
 		FileHelper.deleteDirectory(Configuration.TEMP_FILES_PATH + this.dataType + "/" + this.buggyProject);
 	}
-
-	private List<SuspiciousPosition> readKnownBugPositionsFromFile() {
-		List<SuspiciousPosition> suspiciousCodeList = new ArrayList<>();
-		
-		String[] posArray = FileHelper.readFile(Configuration.knownBugPositions).split("\n");
-		Boolean isBuggyProject = null;
-		for (String pos : posArray) {
-			if (isBuggyProject == null || isBuggyProject) {
-				if (pos.startsWith(this.buggyProject + "@")) {
-					isBuggyProject = true;
-					
-					String[] elements = pos.split("@");
-	            	String[] lineStrArr = elements[2].split(",");
-	            	String classPath = elements[1];
-	            	String shortSrcPath = dp.srcPath.substring(dp.srcPath.indexOf(this.buggyProject) + this.buggyProject.length() + 1);
-	            	classPath = classPath.substring(shortSrcPath.length(), classPath.length() - 5);
-
-	            	for (String lineStr : lineStrArr) {
-	    				if (lineStr.contains("-")) {
-	    					String[] subPos = lineStr.split("-");
-	    					for (int line = Integer.valueOf(subPos[0]), endLine = Integer.valueOf(subPos[1]); line <= endLine; line ++) {
-	    						SuspiciousPosition sp = new SuspiciousPosition();
-	    		            	sp.classPath = classPath;
-	    		            	sp.lineNumber = line;
-	    		            	suspiciousCodeList.add(sp);
-	    					}
-	    				} else {
-	    					SuspiciousPosition sp = new SuspiciousPosition();
-	    	            	sp.classPath = classPath;
-	    	            	sp.lineNumber = Integer.valueOf(lineStr);
-	    	            	suspiciousCodeList.add(sp);
-	    				}
-	    			}
-				} else if (isBuggyProject!= null && isBuggyProject) isBuggyProject = false;
-			} else if (!isBuggyProject) break;
-		}
-		return suspiciousCodeList;
-	} 
-
-	private List<String> readKnownFileLevelBugPositions() {
-		List<String> buggyFileList = new ArrayList<>();
-		
-		String[] posArray = FileHelper.readFile(Configuration.knownBugPositions).split("\n");
-		Boolean isBuggyProject = null;
-		for (String pos : posArray) {
-			if (isBuggyProject == null || isBuggyProject) {
-				if (pos.startsWith(this.buggyProject + "@")) {
-					isBuggyProject = true;
-					
-					String[] elements = pos.split("@");
-	            	String classPath = elements[1];
-	            	String shortSrcPath = dp.srcPath.substring(dp.srcPath.indexOf(this.buggyProject) + this.buggyProject.length() + 1);
-	            	classPath = classPath.substring(shortSrcPath.length(), classPath.length() - 5).replace("/", ".");
-
-	            	if (!buggyFileList.contains(classPath)) {
-	            		buggyFileList.add(classPath);
-	            	}
-				} else if (isBuggyProject!= null && isBuggyProject) isBuggyProject = false;
-			} else if (!isBuggyProject) break;
-		}
-		return buggyFileList;
-	}
 	
+	// THIS ONE is for file-level localization
 	public List<SuspiciousPosition> readSuspiciousCodeFromFile(List<String> buggyFileList) {
 		File suspiciousFile = null;
 		String suspiciousFilePath = "";
@@ -221,47 +150,6 @@ public class TBarFixer extends AbstractFixer {
 		return suspiciousCodeList;
 	}
 
-
-	public List<SuspiciousPosition> readSuspiciousCodeFromFile() {
-		File suspiciousFile = null;
-		String suspiciousFilePath = "";
-		if (this.suspCodePosFile == null) {
-			suspiciousFilePath = Configuration.suspPositionsFilePath;
-		} else {
-			suspiciousFilePath = this.suspCodePosFile.getPath();
-		}
-		suspiciousFile = new File(suspiciousFilePath + "/" + this.buggyProject + "/" + this.metric + ".txt");
-		if (!suspiciousFile.exists()) {
-			System.out.println("Cannot find the suspicious code position file." + suspiciousFile.getPath());
-			suspiciousFile = new File(suspiciousFilePath + "/" + this.buggyProject + "/" + this.metric.toLowerCase() + ".txt");
-		}
-		if (!suspiciousFile.exists()) {
-			System.out.println("Cannot find the suspicious code position file." + suspiciousFile.getPath());
-			suspiciousFile = new File(suspiciousFilePath + "/" + this.buggyProject + "/All.txt");
-		}
-		if (!suspiciousFile.exists()) return null;
-		List<SuspiciousPosition> suspiciousCodeList = new ArrayList<>();
-		try {
-			FileReader fileReader = new FileReader(suspiciousFile);
-            BufferedReader reader = new BufferedReader(fileReader);
-            String line = null;
-            while ((line = reader.readLine()) != null) {
-            	String[] elements = line.split("@");
-            	SuspiciousPosition sp = new SuspiciousPosition();
-            	sp.classPath = elements[0];
-            	sp.lineNumber = Integer.valueOf(elements[1]);
-            	suspiciousCodeList.add(sp);
-            }
-            reader.close();
-            fileReader.close();
-        }catch (Exception e){
-        	e.printStackTrace();
-        	log.debug("Reloading Localization Result...");
-            return null;
-        }
-		if (suspiciousCodeList.isEmpty()) return null;
-		return suspiciousCodeList;
-	}
 
 	
 	public void fixWithMatchedFixTemplates(SuspCodeNode scn, List<Integer> distinctContextInfo) {

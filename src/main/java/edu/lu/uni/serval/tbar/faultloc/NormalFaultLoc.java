@@ -7,18 +7,26 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.lu.uni.serval.tbar.config.Configuration;
 import edu.lu.uni.serval.tbar.dataprepare.DataPreparer;
 import edu.lu.uni.serval.tbar.utils.SuspiciousPosition;
 
 public class NormalFaultLoc extends AbstractFaultLoc {
-    private List<SuspiciousPosition> suspiciousCodeList = new ArrayList<>();
     
-    public NormalFaultLoc(DataPreparer d, String dataType, String buggyProject, String filePath) {
+    public NormalFaultLoc(DataPreparer d, String dataType, String buggyProject, String filePath, String metric) {
         super(d,dataType,buggyProject);
-        File suspiciousFile = new File(filePath);
-		if (!suspiciousFile.exists()) return;
 
-        try {
+        File suspiciousFile = new File(filePath + "/" +  buggyProject + "/" + metric + ".txt");
+		if (!suspiciousFile.exists()) {
+			System.out.println("Cannot find the suspicious code position file." + suspiciousFile.getPath());
+			suspiciousFile = new File(filePath + "/" + this.buggyProject + "/" + metric.toLowerCase() + ".txt");
+		}
+		if (!suspiciousFile.exists()) {
+			System.out.println("Cannot find the suspicious code position file." + suspiciousFile.getPath());
+			suspiciousFile = new File(filePath + "/" + this.buggyProject + "/All.txt");
+		}
+		if (!suspiciousFile.exists()) return;
+		try {
 			FileReader fileReader = new FileReader(suspiciousFile);
             BufferedReader reader = new BufferedReader(fileReader);
             String line = null;
@@ -33,7 +41,10 @@ public class NormalFaultLoc extends AbstractFaultLoc {
             fileReader.close();
         }catch (Exception e){
         	e.printStackTrace();
+        	log.debug("Reloading Localization Result...");
+            return ;
         }
+		return;
     }
     
 }
