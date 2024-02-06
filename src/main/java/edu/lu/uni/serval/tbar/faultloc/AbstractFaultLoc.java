@@ -22,7 +22,15 @@ public abstract class AbstractFaultLoc {
     protected String buggyProject = "";
 	protected static Logger log = LoggerFactory.getLogger(AbstractFaultLoc.class);
     protected List<SuspiciousPosition> suspiciousCodeList = new ArrayList<>();
-
+	
+	public Granularity granularity = Granularity.Line;
+	
+	public enum Granularity {
+		Line,
+		File,
+		FL
+	}
+	
 	public List<SuspiciousPosition> getSuspiciousCodeList() { return this.suspiciousCodeList; }
 
     public AbstractFaultLoc(DataPreparer d, String dt, String project) {
