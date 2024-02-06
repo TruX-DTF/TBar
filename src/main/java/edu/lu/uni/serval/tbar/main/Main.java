@@ -129,9 +129,9 @@ public class Main {
 
 			// FIXME: fix the design here because the data preparer thing is shared weirdly 
 
-			if(line.hasOption("faultloc") && line.getOptionValue("faultloc").equals("perfect")) {
+			if(line.hasOption("faultLoc") && line.getOptionValue("faultLoc").equals("perfect")) {
 				// claire cut configuration of granularity since it looks like they only use Line
-				 faultloc =  new PerfectFaultLoc(fixer.getDataPreparer(), fixer.dataType, projectName, Configuration.suspPositionsFilePath); 
+				 faultloc =  new PerfectFaultLoc(fixer.getDataPreparer(), fixer.dataType, projectName, bugNum, Configuration.suspPositionsFilePath); 
 				if (Integer.MAX_VALUE == fixer.minErrorTest) {
 					System.out.println("Failed to defects4j compile bug " + bugId);
 					return;

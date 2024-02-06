@@ -10,19 +10,20 @@ import edu.lu.uni.serval.tbar.dataprepare.DataPreparer;
 
 public class PerfectFaultLoc extends AbstractFaultLoc {
 
-    public PerfectFaultLoc(DataPreparer d, String dataType, String buggyProject, String filePath) {
+    public PerfectFaultLoc(DataPreparer d, String dataType, String buggyProject, int bugNum, String filePath) {
         super(d,dataType,buggyProject);
+		String bugString = buggyProject +"_"+ Integer.toString(bugNum);
 		String[] posArray = FileHelper.readFile(filePath).split("\n");
 		Boolean isBuggyProject = null;
 		for (String pos : posArray) {
 			if (isBuggyProject == null || isBuggyProject) {
-				if (pos.startsWith(buggyProject + "@")) {
+				if (pos.startsWith(bugString + "@")) {
 					isBuggyProject = true;
 					
 					String[] elements = pos.split("@");
 	            	String[] lineStrArr = elements[2].split(",");
 	            	String classPath = elements[1];
-	            	String shortSrcPath = dp.srcPath.substring(dp.srcPath.indexOf(buggyProject) + buggyProject.length() + 1);
+	            	String shortSrcPath = dp.srcPath.substring(dp.srcPath.indexOf(bugString) + bugString.length() + 1);
 	            	classPath = classPath.substring(shortSrcPath.length(), classPath.length() - 5);
 
 	            	for (String lineStr : lineStrArr) {
