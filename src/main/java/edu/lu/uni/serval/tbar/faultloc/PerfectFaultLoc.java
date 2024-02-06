@@ -12,7 +12,7 @@ public class PerfectFaultLoc extends AbstractFaultLoc {
 
     public PerfectFaultLoc(DataPreparer d, String dataType, String buggyProject, String filePath) {
         super(d,dataType,buggyProject);
-		String[] posArray = FileHelper.readFile(Configuration.knownBugPositions).split("\n");
+		String[] posArray = FileHelper.readFile(filePath).split("\n");
 		Boolean isBuggyProject = null;
 		for (String pos : posArray) {
 			if (isBuggyProject == null || isBuggyProject) {

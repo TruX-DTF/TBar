@@ -13,10 +13,10 @@ import edu.lu.uni.serval.tbar.utils.SuspiciousPosition;
 
 public class NormalFaultLoc extends AbstractFaultLoc {
     
-    public NormalFaultLoc(DataPreparer d, String dataType, String buggyProject, String filePath, String metric) {
+    public NormalFaultLoc(DataPreparer d, String dataType, String buggyProject, String filePath, int bugNum, String metric) {
         super(d,dataType,buggyProject);
 
-        File suspiciousFile = new File(filePath + "/" +  buggyProject + "/" + metric + ".txt");
+        File suspiciousFile = new File(filePath + "/" +  buggyProject + "_" + Integer.toString(bugNum) + "/" + metric + ".txt");
 		if (!suspiciousFile.exists()) {
 			System.out.println("Cannot find the suspicious code position file." + suspiciousFile.getPath());
 			suspiciousFile = new File(filePath + "/" + this.buggyProject + "/" + metric.toLowerCase() + ".txt");

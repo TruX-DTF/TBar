@@ -64,20 +64,15 @@ public class Main {
 		options.addOption(Option.builder("susPositions")
 		.argName("susPositions")
 		.hasArg()
-		.desc("File path to suspicious positions file. Dunno if we need this.")
-		.build());
+		.required()
+		.desc("File path to fault localizatin information.  Different format for different kinds of FL.")
+		.build()); // FIXME: do something about the weird format thing.
 
 		options.addOption(Option.builder("failedTests")
 		.argName("failedTests")
 		.hasArg()
 		.required()
 		.desc("File path to failed Test Cases. Dunno if we need this.")
-		.build());
-
-		options.addOption(Option.builder("knownBugPositions")
-		.argName("knownBugPositions")
-		.hasArg()
-		.desc("File path to file listing known bug positions. Dunno if we need this.")
 		.build());
 
 		options.addOption(Option.builder("isTestFixPatterns")
@@ -119,15 +114,12 @@ public class Main {
 				System.err.println("Please input correct buggy project ID, such as \"Chart_1\".");
 				return;
 			}
-			if (line.hasOption("susPositions")) {
-				Configuration.suspPositionsFilePath = line.getOptionValue("susPositions");
-			}
+			Configuration.suspPositionsFilePath = line.getOptionValue("susPositions");
+			
 			if (line.hasOption("failedTests")) {
 				Configuration.failedTestCasesFilePath = line.getOptionValue("failedTests"); //"/Users/kui.liu/eclipse-fault-localization/FL-VS-APR/data/FailedTestCases/";//
 			}
-			if (line.hasOption("knownBugPositions")) {
-				Configuration.knownBugPositions = line.getOptionValue("knownBugPositions"); 
-			}
+	
 			Configuration.defects4j_home = line.getOptionValue("d4jHome");
 			fixer = new TBarFixer(Configuration.bugDataPath, projectName, bugNum, Configuration.defects4j_home);
 			fixer.dataType = "TBar";
@@ -139,7 +131,7 @@ public class Main {
 
 			if(line.hasOption("faultloc") && line.getOptionValue("faultloc").equals("perfect")) {
 				// claire cut configuration of granularity since it looks like they only use Line
-				 faultloc =  new PerfectFaultLoc(fixer.getDataPreparer(), fixer.dataType, projectName, Configuration.knownBugPositions); 
+				 faultloc =  new PerfectFaultLoc(fixer.getDataPreparer(), fixer.dataType, projectName, Configuration.suspPositionsFilePath); 
 				if (Integer.MAX_VALUE == fixer.minErrorTest) {
 					System.out.println("Failed to defects4j compile bug " + bugId);
 					return;
@@ -153,7 +145,7 @@ public class Main {
 			}
 			} else {
 				// fixme: there is code to do line-level vs. file-level localization for some reason 
-				faultloc = new NormalFaultLoc(fixer.getDataPreparer(), fixer.dataType, projectName, Configuration.suspPositionsFilePath, Configuration.faultLocalizationMetric);
+				faultloc = new NormalFaultLoc(fixer.getDataPreparer(), fixer.dataType, projectName, Configuration.suspPositionsFilePath, bugNum, Configuration.faultLocalizationMetric);
 				Configuration.outputPath += "NormalFL/";
 				fixer.suspCodePosFile = new File(Configuration.suspPositionsFilePath);
 				if (Integer.MAX_VALUE == fixer.minErrorTest) {
