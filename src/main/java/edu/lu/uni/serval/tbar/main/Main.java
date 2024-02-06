@@ -41,15 +41,15 @@ public class Main {
 		.required()
 		.build());
 
-		options.addOption(Option.builder("bug-id")
+		options.addOption(Option.builder("bugId")
 		.argName("bug ID")
 		.hasArg()
 		.desc("Defects$J bug ID, <project_name>_<num>") // TODO make this reasonable
 		.required()
 		.build());
 		
-		options.addOption(Option.builder("d4j-home")
-		.argName("d4j-home")
+		options.addOption(Option.builder("d4jHome")
+		.argName("d4jHome")
 		.hasArg()
 		.desc("path to defects4j repository")
 		.required()
