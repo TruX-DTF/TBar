@@ -71,7 +71,7 @@ public abstract class AbstractFixer {
 	public AbstractFixer(String path, String projectName, int bugId, String defects4jPath) {
 		this.path = path;
 		this.buggyProject = projectName + "_" + bugId;
-		fullBuggyProjectPath = path + buggyProject;
+		fullBuggyProjectPath = path + "/" + buggyProject;
 		this.defects4jPath = defects4jPath;
 //		int compileResult = TestUtils.compileProjectWithDefects4j(fullBuggyProjectPath, this.defects4jPath);
 //      if (compileResult == 1) {
