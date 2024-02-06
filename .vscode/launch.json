@@ -10,7 +10,7 @@
             "request": "launch",
             "mainClass": "edu.lu.uni.serval.tbar.main.Main",
             "projectName": "TBar",
-            "args" : "-bugDataPath /home/tbar/bugdata -bugId Chart_8 -d4jHome /home/tbar/defects4j/ -susPositions /workspaces/TBar/SuspiciousCodePositions/"
+            "args" : "-bugDataPath /home/tbar/bugdata -bugId Chart_8 -d4jHome /home/tbar/defects4j/ -susPositions /workspaces/TBar/SuspiciousCodePositions/ -failedTests /workspaces/TBar/FailedTestCases"
         },
     ]
 }

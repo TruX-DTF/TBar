@@ -105,7 +105,7 @@ public abstract class AbstractFixer {
 	}
 	
 	private void readPreviouslyFailedTestCases() {
-		String[] failedTestCases = FileHelper.readFile(Configuration.failedTestCasesFilePath + this.buggyProject + ".txt").split("\n");
+		String[] failedTestCases = FileHelper.readFile(Configuration.failedTestCasesFilePath + "/" + this.buggyProject + ".txt").split("\n");
 		List<String> failedTestCasesList = new ArrayList<>();
 		List<String> failed = new ArrayList<>();
 		for (int index = 1, length = failedTestCases.length; index < length; index ++) {
