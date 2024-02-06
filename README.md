@@ -10,7 +10,7 @@ I. Requirement
  - [GZoltar](https://github.com/SerVal-DTF/TBar/tree/master/lib)
  - [SVN >= 1.8](https://subversion.apache.org/packages.html)
  - [perl >= 5.0.10](https://www.perl.org/get.html)
-
+ 
 II. Overview of TBar
 --------------------
 
@@ -19,15 +19,8 @@ II. Overview of TBar
 <img src="./figure/algorithm.png" width="500">
 
 
-III. Prepare Defects4J Bugs
+III. Docker (which probably checks out its own D4J)
 ---------------------------
- 1. Download and Install Defects4J.
- - `./installD4J.sh`
- 
- 2. Check out and compile each bug.
- - `./checkoutD4JBugs.sh`
-    
-  If you fail to install defects4j, checkout or compile defects4j bugs, please reference these [introductions](https://github.com/rjust/defects4j#steps-to-set-up-defects4j).
  
   The docker image of TBar is available: [TBar](https://cloud.docker.com/u/kuiliu/repository/docker/kuiliu/tbar).
   
