@@ -108,7 +108,7 @@ public class Main {
                 System.exit(0);
             }
 			Configuration.bugDataPath = line.getOptionValue("bugDataPath"); // "/Users/kui.liu/Public/Defects4J_Data/";//
-			bugId = line.getOptionValue("bug-id"); //  "Chart_1" 
+			bugId = line.getOptionValue("bugId"); //  "Chart_1" 
 			String[] elements = bugId.split("_"); //FIXME fix this
 			String projectName = elements[0];
 			int bugNum;
@@ -127,7 +127,7 @@ public class Main {
 			if (line.hasOption("knownBugPositions")) {
 				Configuration.knownBugPositions = line.getOptionValue("knownBugPositions"); 
 			}
-			Configuration.defects4j_home = line.getOptionValue("d4j-home");
+			Configuration.defects4j_home = line.getOptionValue("d4jHome");
 			fixer = new TBarFixer(Configuration.bugDataPath, projectName, bugNum, Configuration.defects4j_home);
 			fixer.dataType = "TBar";
 			fixer.isTestFixPatterns = line.hasOption("isTestFixPatterns");
