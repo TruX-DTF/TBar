@@ -4,70 +4,178 @@ import java.io.File;
 
 import edu.lu.uni.serval.tbar.AbstractFixer;
 import edu.lu.uni.serval.tbar.TBarFixer;
+import edu.lu.uni.serval.tbar.TBarFixer.Granularity;
+import edu.lu.uni.serval.tbar.TBarFixer_NFL;
 import edu.lu.uni.serval.tbar.config.Configuration;
 
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Option;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
 /**
  * Fix bugs with Fault Localization results.
  * 
  * @author kui.liu
  *
  */
+
+ // previously, NormalFL runner called Main
+ // perfect FLT runner called MainPerfectFL
+ // Main made a TBarFixer
+ // MainPerfectFL also made a TBarFixer
+ // so the big mystery is, how does TBar know which FL to use
+
 public class Main {
 	
-	public static void main(String[] args) {
-		if (args.length != 3) {
-			System.err.println("Arguments: \n" 
-					+ "\t<Bug_Data_Path>: the directory of checking out Defects4J bugs. \n"
-					+ "\t<Bug_ID>: bug id of each Defects4J bug, such as Chart_1. \n"
-//					+ "\t<Suspicious_Code_Positions_File_Path>: \n"
-//					 +"\t<Failed_Test_Cases_File_Path>: \n"
-					+ "\t<defects4j_Home>: the directory of defects4j git repository.\n");
-			System.exit(0);
-		}
-		String bugDataPath = args[0];// "../Defects4JData/"
-		String bugId = args[1]; // "Chart_1"
-		String defects4jHome = args[2]; // "../defects4j/"
-		System.out.println(bugId);
-		fixBug(bugDataPath, defects4jHome, bugId);
+	public static Options buildOptions() {
+		Options options = new Options();
+
+		options.addOption(Option.builder("bugDataPath")
+		.argName("bug-data-path")
+		.hasArg()
+		.desc("parent directory of checked out defects")
+		.required()
+		.build());
+
+		options.addOption(Option.builder("bug-id")
+		.argName("bug ID")
+		.hasArg()
+		.desc("Defects$J bug ID, <project_name>_<num>") // TODO make this reasonable
+		.required()
+		.build());
+		
+		options.addOption(Option.builder("d4j-home")
+		.argName("d4j-home")
+		.hasArg()
+		.desc("path to defects4j repository")
+		.required()
+		.build());
+
+		options.addOption(Option.builder("faultLoc")
+		.argName("faultLoc")
+		.hasArg()
+		.desc("Fault localization strategies, options: perfect, normal. Default: normal")
+		.build());
+
+		options.addOption(Option.builder("susPositions")
+		.argName("susPositions")
+		.hasArg()
+		.desc("File path to suspicious positions file. Dunno if we need this.")
+		.build());
+
+		options.addOption(Option.builder("failedTests")
+		.argName("failedTests")
+		.hasArg()
+		.desc("File path to failed Test Cases. Dunno if we need this.")
+		.build());
+
+		options.addOption(Option.builder("knownBugPositions")
+		.argName("knownBugPositions")
+		.hasArg()
+		.desc("File path to file listing known bug positions. Dunno if we need this.")
+		.build());
+
+		options.addOption(Option.builder("isTestFixPatterns")
+		.argName("isTestFixPatterns")
+		.desc("Not sure what this is but it exists.")
+		.build());
+
+        // --help
+        options.addOption("help", false, "Prints this help message.");
+		return options;
+
 	}
 
-	public static void fixBug(String bugDataPath, String defects4jHome, String bugIdStr) {
-		Configuration.outputPath += "NormalFL/";
-		String suspiciousFileStr = Configuration.suspPositionsFilePath;
-		
-		String[] elements = bugIdStr.split("_");
-		String projectName = elements[0];
-		int bugId;
+
+	public static void main(String[] args) {
+
+		CommandLineParser parser = new DefaultParser();
+		Options options = buildOptions();
+        // automatically generate the help statement
+        HelpFormatter formatter = new HelpFormatter();
+		AbstractFixer fixer = null;
+		String bugId = "";
 		try {
-			bugId = Integer.valueOf(elements[1]);
-		} catch (NumberFormatException e) {
-			System.err.println("Please input correct buggy project ID, such as \"Chart_1\".");
-			return;
-		}
+            CommandLine line = parser.parse(options, args);
+			if (line.hasOption("help")) {
+                formatter.printHelp("tbar", options);
+                System.exit(0);
+            }
+			Configuration.bugDataPath = line.getOptionValue("bugDataPath"); // "/Users/kui.liu/Public/Defects4J_Data/";//
+			bugId = line.getOptionValue("bug-id"); //  "Chart_1" 
+			String[] elements = bugId.split("_"); //FIXME fix this
+			String projectName = elements[0];
+			int bugNum;
+			try {
+				bugNum = Integer.valueOf(elements[1]);
+			} catch (NumberFormatException e) {
+				System.err.println("Please input correct buggy project ID, such as \"Chart_1\".");
+				return;
+			}
+			if (line.hasOption("susPositions")) {
+				Configuration.suspPositionsFilePath = line.getOptionValue("susPositions");
+			}
+			if (line.hasOption("failedTests")) {
+				Configuration.failedTestCasesFilePath = line.getOptionValue("failedTests"); //"/Users/kui.liu/eclipse-fault-localization/FL-VS-APR/data/FailedTestCases/";//
+			}
+			if (line.hasOption("knownBugPositions")) {
+				Configuration.knownBugPositions = line.getOptionValue("knownBugPositions"); 
+			}
+			Configuration.defects4j_home = line.getOptionValue("d4j-home");
+
+			if(line.hasOption("faultloc") && line.getOptionValue("faultloc").equals("perfect")) {
+				fixer = new TBarFixer(Configuration.bugDataPath, projectName, bugNum, Configuration.defects4j_home);
+				fixer.dataType = "TBar";
+				fixer.isTestFixPatterns = line.hasOption("isTestFixPatterns");
+				// claire cut configuration of granularity since it looks like they only use Line
+				
+				if (Integer.MAX_VALUE == fixer.minErrorTest) {
+					System.out.println("Failed to defects4j compile bug " + bugId);
+					return;
+				}
+				fixer.metric = Configuration.faultLocalizationMetric;
 		
-		AbstractFixer fixer = new TBarFixer(bugDataPath, projectName, bugId, defects4jHome);
-		fixer.dataType = "TBar";
-		fixer.metric = Configuration.faultLocalizationMetric;
-		fixer.suspCodePosFile = new File(suspiciousFileStr);
-		if (Integer.MAX_VALUE == fixer.minErrorTest) {
-			System.out.println("Failed to defects4j compile bug " + bugIdStr);
-			return;
-		}
+			if (line.hasOption("isTestFixPatterns")) {
+				Configuration.outputPath += "FixPatterns/";
+			} else {
+				Configuration.outputPath += "PerfectFL/";
+			}
+			} else {
+				Configuration.outputPath += "NormalFL/";
+				fixer = new TBarFixer(Configuration.bugDataPath, projectName, bugNum, Configuration.defects4j_home);
+				fixer.dataType = "TBar";
+				fixer.metric = Configuration.faultLocalizationMetric;
+				fixer.suspCodePosFile = new File(Configuration.suspPositionsFilePath);
+				if (Integer.MAX_VALUE == fixer.minErrorTest) {
+					System.out.println("Failed to defects4j compile bug " + bugId);
+					return;
+				}
+				
 		
+			}
+
+		} catch (ParseException exp) {
+            System.out.println("Unexpected parser exception:" + exp.getMessage());
+        }
+		if(fixer != null) {
 		fixer.fixProcess();
 		
 		int fixedStatus = fixer.fixedStatus;
 		switch (fixedStatus) {
 		case 0:
-			System.out.println("Failed to fix bug " + bugIdStr);
+			System.out.println("Failed to fix bug " + bugId);
 			break;
 		case 1:
-			System.out.println("Succeeded to fix bug " + bugIdStr);
+			System.out.println("Succeeded to fix bug " + bugId);
 			break;
 		case 2:
-			System.out.println("Partial succeeded to fix bug " + bugIdStr);
+			System.out.println("Partial succeeded to fix bug " + bugId);
 			break;
 		}
 	}
+}
 
 }
