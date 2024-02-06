@@ -25,6 +25,9 @@ III. Docker (which probably checks out its own D4J)
   The docker image of TBar is available: [TBar](https://cloud.docker.com/u/kuiliu/repository/docker/kuiliu/tbar).
   
  IV. Run TBar
+
+ Chart_8.zip is included in this repository as a sample D4J bug for testing.
+ 
  ------------
  1. Fixing Defects4J bugs with perfect fault localization configuration.
  - `./PerfectFLTBarRunner.sh <Bug_Data_Path> <Bug_ID> <defects4j_Home> <true/false>`
