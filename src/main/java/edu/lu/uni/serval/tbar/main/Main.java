@@ -2,11 +2,12 @@ package edu.lu.uni.serval.tbar.main;
 
 import java.io.File;
 
-import edu.lu.uni.serval.tbar.AbstractFixer;
-import edu.lu.uni.serval.tbar.TBarFixer;
-import edu.lu.uni.serval.tbar.TBarFixer.Granularity;
-import edu.lu.uni.serval.tbar.TBarFixer_NFL;
 import edu.lu.uni.serval.tbar.config.Configuration;
+import edu.lu.uni.serval.tbar.faultloc.AbstractFaultLoc;
+import edu.lu.uni.serval.tbar.fixers.AbstractFixer;
+import edu.lu.uni.serval.tbar.fixers.TBarFixer;
+import edu.lu.uni.serval.tbar.faultloc.PerfectFaultLoc;
+import edu.lu.uni.serval.tbar.faultloc.NormalFaultLoc;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -97,6 +98,8 @@ public class Main {
         // automatically generate the help statement
         HelpFormatter formatter = new HelpFormatter();
 		AbstractFixer fixer = null;
+		AbstractFaultLoc faultloc = null;
+
 		String bugId = "";
 		try {
             CommandLine line = parser.parse(options, args);
@@ -125,13 +128,17 @@ public class Main {
 				Configuration.knownBugPositions = line.getOptionValue("knownBugPositions"); 
 			}
 			Configuration.defects4j_home = line.getOptionValue("d4j-home");
+			fixer = new TBarFixer(Configuration.bugDataPath, projectName, bugNum, Configuration.defects4j_home);
+			fixer.dataType = "TBar";
+			fixer.isTestFixPatterns = line.hasOption("isTestFixPatterns");
+			fixer.metric = Configuration.faultLocalizationMetric;
+
+
+			// FIXME: fix the design here because the data preparer thing is shared weirdly 
 
 			if(line.hasOption("faultloc") && line.getOptionValue("faultloc").equals("perfect")) {
-				fixer = new TBarFixer(Configuration.bugDataPath, projectName, bugNum, Configuration.defects4j_home);
-				fixer.dataType = "TBar";
-				fixer.isTestFixPatterns = line.hasOption("isTestFixPatterns");
 				// claire cut configuration of granularity since it looks like they only use Line
-				
+				 faultloc =  new PerfectFaultLoc(fixer.getDataPreparer(), fixer.dataType, projectName, Configuration.knownBugPositions); 
 				if (Integer.MAX_VALUE == fixer.minErrorTest) {
 					System.out.println("Failed to defects4j compile bug " + bugId);
 					return;
@@ -144,10 +151,8 @@ public class Main {
 				Configuration.outputPath += "PerfectFL/";
 			}
 			} else {
+				faultloc = new NormalFaultLoc(fixer.getDataPreparer(), fixer.dataType, projectName, Configuration.suspPositionsFilePath);
 				Configuration.outputPath += "NormalFL/";
-				fixer = new TBarFixer(Configuration.bugDataPath, projectName, bugNum, Configuration.defects4j_home);
-				fixer.dataType = "TBar";
-				fixer.metric = Configuration.faultLocalizationMetric;
 				fixer.suspCodePosFile = new File(Configuration.suspPositionsFilePath);
 				if (Integer.MAX_VALUE == fixer.minErrorTest) {
 					System.out.println("Failed to defects4j compile bug " + bugId);
@@ -156,6 +161,7 @@ public class Main {
 				
 		
 			}
+			fixer.setFaultLoc(faultloc);
 
 		} catch (ParseException exp) {
             System.out.println("Unexpected parser exception:" + exp.getMessage());

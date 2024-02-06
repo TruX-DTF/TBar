@@ -1,4 +1,4 @@
-package edu.lu.uni.serval.tbar;
+package edu.lu.uni.serval.tbar.fixers;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -13,19 +13,16 @@ import org.apache.commons.lang3.math.NumberUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import edu.lu.uni.serval.entity.Pair;
-import edu.lu.uni.serval.jdt.tree.ITree;
+import edu.lu.uni.serval.tbar.faultloc.AbstractFaultLoc;
 import edu.lu.uni.serval.tbar.code.analyser.JavaCodeFileParser;
 import edu.lu.uni.serval.tbar.config.Configuration;
 import edu.lu.uni.serval.tbar.context.Dictionary;
 import edu.lu.uni.serval.tbar.dataprepare.DataPreparer;
+import edu.lu.uni.serval.tbar.faultloc.SuspCodeNode;
 import edu.lu.uni.serval.tbar.info.Patch;
 import edu.lu.uni.serval.tbar.utils.FileHelper;
-import edu.lu.uni.serval.tbar.utils.FileUtils;
 import edu.lu.uni.serval.tbar.utils.PathUtils;
 import edu.lu.uni.serval.tbar.utils.ShellUtils;
-import edu.lu.uni.serval.tbar.utils.SuspiciousCodeParser;
-import edu.lu.uni.serval.tbar.utils.SuspiciousPosition;
 import edu.lu.uni.serval.tbar.utils.TestUtils;
 
 /**
@@ -34,10 +31,11 @@ import edu.lu.uni.serval.tbar.utils.TestUtils;
  * @author kui.liu
  *
  */
-public abstract class AbstractFixer implements IFixer {
+public abstract class AbstractFixer {
 	
 	private static Logger log = LoggerFactory.getLogger(AbstractFixer.class);
 	
+	public abstract void fixProcess();
 	public String metric = "Ochiai";          // Fault localization metric.
 	protected String path = "";
 	protected String buggyProject = "";     // The buggy project name.
@@ -49,7 +47,8 @@ public abstract class AbstractFixer implements IFixer {
 	public String outputPath = "";          // Output path for the generated patches.
 	public File suspCodePosFile = null;     // The file containing suspicious code positions localized by FL tools.
 	protected DataPreparer dp;              // The needed data of buggy program for compiling and testing.
-	
+	protected AbstractFaultLoc faultloc = null;
+
 	private String failedTestCaseClasses = ""; // Classes of the failed test cases before fixing.
 	// All specific failed test cases after testing the buggy project with defects4j command in Java code before fixing.
 	protected List<String> failedTestStrList = new ArrayList<>();
@@ -67,7 +66,8 @@ public abstract class AbstractFixer implements IFixer {
 	protected Dictionary dic = null;
 	
 	public boolean isTestFixPatterns = false;
-	
+	public DataPreparer getDataPreparer() { return this.dp; }
+	public void setFaultLoc(AbstractFaultLoc fl) { this.faultloc = fl; }
 	public AbstractFixer(String path, String projectName, int bugId, String defects4jPath) {
 		this.path = path;
 		this.buggyProject = projectName + "_" + bugId;
@@ -143,102 +143,6 @@ public abstract class AbstractFixer implements IFixer {
 			dic.setMethods(jcfp.methods);
 			dic.setSuperClasses(jcfp.superClassNames);
 		}
-	}
-
-	public List<SuspiciousPosition> readSuspiciousCodeFromFile() {
-		File suspiciousFile = null;
-		String suspiciousFilePath = "";
-		if (this.suspCodePosFile == null) {
-			suspiciousFilePath = Configuration.suspPositionsFilePath;
-		} else {
-			suspiciousFilePath = this.suspCodePosFile.getPath();
-		}
-		suspiciousFile = new File(suspiciousFilePath + "/" + this.buggyProject + "/" + this.metric + ".txt");
-		if (!suspiciousFile.exists()) {
-			System.out.println("Cannot find the suspicious code position file." + suspiciousFile.getPath());
-			suspiciousFile = new File(suspiciousFilePath + "/" + this.buggyProject + "/" + this.metric.toLowerCase() + ".txt");
-		}
-		if (!suspiciousFile.exists()) {
-			System.out.println("Cannot find the suspicious code position file." + suspiciousFile.getPath());
-			suspiciousFile = new File(suspiciousFilePath + "/" + this.buggyProject + "/All.txt");
-		}
-		if (!suspiciousFile.exists()) return null;
-		List<SuspiciousPosition> suspiciousCodeList = new ArrayList<>();
-		try {
-			FileReader fileReader = new FileReader(suspiciousFile);
-            BufferedReader reader = new BufferedReader(fileReader);
-            String line = null;
-            while ((line = reader.readLine()) != null) {
-            	String[] elements = line.split("@");
-            	SuspiciousPosition sp = new SuspiciousPosition();
-            	sp.classPath = elements[0];
-            	sp.lineNumber = Integer.valueOf(elements[1]);
-            	suspiciousCodeList.add(sp);
-            }
-            reader.close();
-            fileReader.close();
-        }catch (Exception e){
-        	e.printStackTrace();
-        	log.debug("Reloading Localization Result...");
-            return null;
-        }
-		if (suspiciousCodeList.isEmpty()) return null;
-		return suspiciousCodeList;
-	}
-	
-	@Override
-	public List<SuspCodeNode> parseSuspiciousCode(SuspiciousPosition suspiciousCode) {
-		String suspiciousClassName = suspiciousCode.classPath;
-		int buggyLine = suspiciousCode.lineNumber;
-		
-		log.debug(suspiciousClassName + " ===" + buggyLine);
-		if (suspiciousClassName.contains("$")) {
-			suspiciousClassName = suspiciousClassName.substring(0, suspiciousClassName.indexOf("$"));
-		}
-		String suspiciousJavaFile = suspiciousClassName.replace(".", "/") + ".java";
-		
-		suspiciousClassName = suspiciousJavaFile.substring(0, suspiciousJavaFile.length() - 5).replace("/", ".");
-		
-		String filePath = dp.srcPath + suspiciousJavaFile;
-		if (!new File(filePath).exists()) return null;
-		File suspCodeFile = new File(filePath);
-		if (!suspCodeFile.exists()) return null;
-		SuspiciousCodeParser scp = new SuspiciousCodeParser();
-		scp.parseSuspiciousCode(new File(filePath), buggyLine);
-		
-		List<Pair<ITree, String>> suspiciousCodePairs = scp.getSuspiciousCode();
-		if (suspiciousCodePairs.isEmpty()) {
-			log.debug("Failed to identify the buggy statement in: " + suspiciousClassName + " --- " + buggyLine);
-			return null;
-		}
-		
-		File targetJavaFile = new File(FileUtils.getFileAddressOfJava(dp.srcPath, suspiciousClassName));
-        File targetClassFile = new File(FileUtils.getFileAddressOfClass(dp.classPath, suspiciousClassName));
-        File javaBackup = new File(FileUtils.tempJavaPath(suspiciousClassName,  this.dataType + "/" + this.buggyProject));
-        File classBackup = new File(FileUtils.tempClassPath(suspiciousClassName, this.dataType + "/" + this.buggyProject));
-        try {
-        	if (!targetClassFile.exists()) return null;
-        	if (javaBackup.exists()) javaBackup.delete();
-        	if (classBackup.exists()) classBackup.delete();
-			Files.copy(targetJavaFile.toPath(), javaBackup.toPath());
-			Files.copy(targetClassFile.toPath(), classBackup.toPath());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-        
-        List<SuspCodeNode> scns = new ArrayList<>();
-		for (Pair<ITree, String> suspCodePair : suspiciousCodePairs) {
-			ITree suspCodeAstNode = suspCodePair.getFirst(); //scp.getSuspiciousCodeAstNode();
-			String suspCodeStr = suspCodePair.getSecond(); //scp.getSuspiciousCodeStr();
-			log.debug("Suspicious Code: \n" + suspCodeStr);
-			
-			int startPos = suspCodeAstNode.getPos();
-			int endPos = startPos + suspCodeAstNode.getLength();
-			SuspCodeNode scn = new SuspCodeNode(javaBackup, classBackup, targetJavaFile, targetClassFile, 
-	        		startPos, endPos, suspCodeAstNode, suspCodeStr, suspiciousJavaFile, buggyLine);
-			scns.add(scn);
-		}
-        return scns;
 	}
 
 	protected List<Patch> triedPatchCandidates = new ArrayList<>();
@@ -470,43 +374,4 @@ public abstract class AbstractFixer implements IFixer {
         patch.setFixedCodeStr1(patchCode);
 	}
 	
-	public class SuspCodeNode {
-
-		public File javaBackup;
-		public File classBackup;
-		public File targetJavaFile;
-		public File targetClassFile;
-		public int startPos;
-		public int endPos;
-		public ITree suspCodeAstNode;
-		public String suspCodeStr;
-		public String suspiciousJavaFile;
-		public int buggyLine;
-		
-		public SuspCodeNode(File javaBackup, File classBackup, File targetJavaFile, File targetClassFile, int startPos,
-				int endPos, ITree suspCodeAstNode, String suspCodeStr, String suspiciousJavaFile, int buggyLine) {
-			this.javaBackup = javaBackup;
-			this.classBackup = classBackup;
-			this.targetJavaFile = targetJavaFile;
-			this.targetClassFile = targetClassFile;
-			this.startPos = startPos;
-			this.endPos = endPos;
-			this.suspCodeAstNode = suspCodeAstNode;
-			this.suspCodeStr = suspCodeStr;
-			this.suspiciousJavaFile = suspiciousJavaFile;
-			this.buggyLine = buggyLine;
-		}
-
-		@Override
-		public boolean equals(Object obj) {
-			if (obj == null) return false;
-			if (obj instanceof SuspCodeNode) {
-				SuspCodeNode suspN = (SuspCodeNode) obj;
-				if (startPos != suspN.startPos) return false;
-				if (endPos != suspN.endPos) return false;
-				if (suspiciousJavaFile.equals(suspN.suspiciousJavaFile)) return true;
-			}
-			return false;
-		}
-	}
 }

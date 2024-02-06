@@ -1,4 +1,4 @@
-package edu.lu.uni.serval.tbar;
+package edu.lu.uni.serval.tbar.fixers;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import edu.lu.uni.serval.jdt.tree.ITree;
 import edu.lu.uni.serval.tbar.config.Configuration;
 import edu.lu.uni.serval.tbar.context.ContextReader;
+import edu.lu.uni.serval.tbar.faultloc.SuspCodeNode;
 import edu.lu.uni.serval.tbar.fixpatterns.CNIdiomNoSuperCall;
 import edu.lu.uni.serval.tbar.fixpatterns.ClassCastChecker;
 import edu.lu.uni.serval.tbar.fixpatterns.ConditionalExpressionMutator;
@@ -42,7 +43,7 @@ import edu.lu.uni.serval.tbar.utils.SuspiciousPosition;
 @SuppressWarnings("unused")
 public class TBarFixer extends AbstractFixer {
 	
-	public Granularity granularity = Granularity.FL;
+	public Granularity granularity = Granularity.Line;
 	
 	public enum Granularity {
 		Line,
@@ -83,7 +84,7 @@ public class TBarFixer extends AbstractFixer {
 		List<SuspCodeNode> triedSuspNode = new ArrayList<>();
 		log.info("=======TBar: Start to fix suspicious code======");
 		for (SuspiciousPosition suspiciousCode : suspiciousCodeList) {
-			List<SuspCodeNode> scns = parseSuspiciousCode(suspiciousCode);
+			List<SuspCodeNode> scns = faultloc.getSuspiciousCode(suspiciousCode);
 			if (scns == null) continue;
 
 			for (SuspCodeNode scn : scns) {
