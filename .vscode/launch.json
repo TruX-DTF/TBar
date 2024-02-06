@@ -1,0 +1,43 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "edu.lu.uni.serval.tbar.main.Main",
+            "projectName": "TBar"
+        },
+        {
+            "type": "java",
+            "name": "MainPerfectFL",
+            "request": "launch",
+            "mainClass": "edu.lu.uni.serval.tbar.main.MainPerfectFL",
+            "projectName": "TBar",
+            "args" : "${command:SpecifyProgramArgs}"
+        },
+        {
+            "type": "java",
+            "name": "Main_NFL",
+            "request": "launch",
+            "mainClass": "edu.lu.uni.serval.tbar.main.Main_NFL",
+            "projectName": "TBar"
+        },
+        {
+            "type": "java",
+            "name": "JunitRunner",
+            "request": "launch",
+            "mainClass": "edu.lu.uni.serval.tbar.utils.JunitRunner",
+            "projectName": "TBar"
+        }
+    ]
+}
