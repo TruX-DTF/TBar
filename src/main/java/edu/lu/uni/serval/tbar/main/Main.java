@@ -70,6 +70,7 @@ public class Main {
 		options.addOption(Option.builder("failedTests")
 		.argName("failedTests")
 		.hasArg()
+		.required()
 		.desc("File path to failed Test Cases. Dunno if we need this.")
 		.build());
 

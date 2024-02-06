@@ -6,38 +6,11 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Current File",
-            "request": "launch",
-            "mainClass": "${file}"
-        },
-        {
-            "type": "java",
             "name": "Main",
             "request": "launch",
             "mainClass": "edu.lu.uni.serval.tbar.main.Main",
-            "projectName": "TBar"
-        },
-        {
-            "type": "java",
-            "name": "MainPerfectFL",
-            "request": "launch",
-            "mainClass": "edu.lu.uni.serval.tbar.main.MainPerfectFL",
             "projectName": "TBar",
-            "args" : "${command:SpecifyProgramArgs}"
+            "args" : "-bugDataPath /home/tbar/bugdata -bugId Chart_8 -d4jHome /home/tbar/defects4j/ -susPositions /workspaces/TBar/SuspiciousCodePositions/"
         },
-        {
-            "type": "java",
-            "name": "Main_NFL",
-            "request": "launch",
-            "mainClass": "edu.lu.uni.serval.tbar.main.Main_NFL",
-            "projectName": "TBar"
-        },
-        {
-            "type": "java",
-            "name": "JunitRunner",
-            "request": "launch",
-            "mainClass": "edu.lu.uni.serval.tbar.utils.JunitRunner",
-            "projectName": "TBar"
-        }
     ]
 }
