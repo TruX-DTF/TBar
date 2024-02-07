@@ -134,16 +134,12 @@ public class Main {
 			if(line.hasOption("faultLocStrategy") && line.getOptionValue("faultLocStrategy").equals("perfect")) {
 				// claire cut configuration of granularity since it looks like they only use Line
 				 faultloc =  new PerfectFaultLoc(fixer.getDataPreparer(), fixer.dataType, projectName, bugNum, faultLocFilePath); 
-				if (Integer.MAX_VALUE == fixer.minErrorTest) {
-					System.out.println("Failed to defects4j compile bug " + bugId);
-					return;
-				}
 		
-			if (line.hasOption("isTestFixPatterns")) {
-				Configuration.outputPath += "FixPatterns/";
-			} else {
-				Configuration.outputPath += "PerfectFL/";
-			}
+				if (line.hasOption("isTestFixPatterns")) {
+					Configuration.outputPath += "FixPatterns/";
+				} else {
+					Configuration.outputPath += "PerfectFL/";
+				}
 			} else {
 				// fixme: there is code to do line-level vs. file-level localization for some reason 
 				faultloc = new NormalFaultLoc(fixer.getDataPreparer(), fixer.dataType, projectName, faultLocFilePath, bugNum, Configuration.faultLocalizationMetric);
