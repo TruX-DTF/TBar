@@ -1,7 +1,5 @@
 package edu.lu.uni.serval.tbar.main;
 
-import java.io.File;
-
 import edu.lu.uni.serval.tbar.config.Configuration;
 import edu.lu.uni.serval.tbar.faultloc.AbstractFaultLoc;
 import edu.lu.uni.serval.tbar.fixers.AbstractFixer;
