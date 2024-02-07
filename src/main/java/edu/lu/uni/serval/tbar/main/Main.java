@@ -55,14 +55,14 @@ public class Main {
 		.required()
 		.build());
 
-		options.addOption(Option.builder("faultLoc")
-		.argName("faultLoc")
+		options.addOption(Option.builder("faultLocStrategy")
+		.argName("faultLocStrategy")
 		.hasArg()
 		.desc("Fault localization strategies, options: perfect, normal. Default: normal")
 		.build());
 
-		options.addOption(Option.builder("susPositions")
-		.argName("susPositions")
+		options.addOption(Option.builder("faultLocFile")
+		.argName("faultLocFile")
 		.hasArg()
 		.required()
 		.desc("File path to fault localizatin information.  Different format for different kinds of FL.")
@@ -114,7 +114,7 @@ public class Main {
 				System.err.println("Please input correct buggy project ID, such as \"Chart_1\".");
 				return;
 			}
-			Configuration.suspPositionsFilePath = line.getOptionValue("susPositions");
+			String faultLocFilePath = line.getOptionValue("faultLocFile");
 			
 			if (line.hasOption("failedTests")) {
 				Configuration.failedTestCasesFilePath = line.getOptionValue("failedTests"); //"/Users/kui.liu/eclipse-fault-localization/FL-VS-APR/data/FailedTestCases/";//
@@ -129,14 +129,13 @@ public class Main {
 
 			// FIXME: fix the design here because the data preparer thing is shared weirdly 
 
-			if(line.hasOption("faultLoc") && line.getOptionValue("faultLoc").equals("perfect")) {
+			if(line.hasOption("faultLocStrategy") && line.getOptionValue("faultLocStrategy").equals("perfect")) {
 				// claire cut configuration of granularity since it looks like they only use Line
-				 faultloc =  new PerfectFaultLoc(fixer.getDataPreparer(), fixer.dataType, projectName, bugNum, Configuration.suspPositionsFilePath); 
+				 faultloc =  new PerfectFaultLoc(fixer.getDataPreparer(), fixer.dataType, projectName, bugNum, faultLocFilePath); 
 				if (Integer.MAX_VALUE == fixer.minErrorTest) {
 					System.out.println("Failed to defects4j compile bug " + bugId);
 					return;
 				}
-				fixer.metric = Configuration.faultLocalizationMetric;
 		
 			if (line.hasOption("isTestFixPatterns")) {
 				Configuration.outputPath += "FixPatterns/";
@@ -145,9 +144,8 @@ public class Main {
 			}
 			} else {
 				// fixme: there is code to do line-level vs. file-level localization for some reason 
-				faultloc = new NormalFaultLoc(fixer.getDataPreparer(), fixer.dataType, projectName, Configuration.suspPositionsFilePath, bugNum, Configuration.faultLocalizationMetric);
+				faultloc = new NormalFaultLoc(fixer.getDataPreparer(), fixer.dataType, projectName, faultLocFilePath, bugNum, Configuration.faultLocalizationMetric);
 				Configuration.outputPath += "NormalFL/";
-				fixer.suspCodePosFile = new File(Configuration.suspPositionsFilePath);
 				if (Integer.MAX_VALUE == fixer.minErrorTest) {
 					System.out.println("Failed to defects4j compile bug " + bugId);
 					return;

@@ -2,7 +2,6 @@ package edu.lu.uni.serval.tbar.config;
 
 public class Configuration {
 
-	public static String suspPositionsFilePath = "SuspiciousCodePositions/";
 	public static String failedTestCasesFilePath = "FailedTestCases/";
 	public static String faultLocalizationMetric = "Ochiai";
 	public static String outputPath = "OUTPUT/";
