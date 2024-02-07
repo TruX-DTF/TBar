@@ -1,3 +1,4 @@
 {
+    //"build" : { "dockerfile": "Dockerfile"}
     "image": "sqtbar:latest"
 }
