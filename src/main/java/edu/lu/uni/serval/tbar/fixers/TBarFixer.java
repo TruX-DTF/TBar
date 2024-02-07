@@ -49,10 +49,6 @@ public class TBarFixer extends AbstractFixer {
 		super(path, projectName, bugId, defects4jPath);
 	}
 	
-	public TBarFixer(String path, String metric, String projectName, int bugId, String defects4jPath) {
-		super(path, metric, projectName, bugId, defects4jPath);
-	}
-
 	@Override
 	public void fixProcess() {
 		// Read paths of the buggy project.

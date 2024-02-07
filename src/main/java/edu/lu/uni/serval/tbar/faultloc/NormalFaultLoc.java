@@ -4,10 +4,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import edu.lu.uni.serval.tbar.config.Configuration;
 import edu.lu.uni.serval.tbar.dataprepare.DataPreparer;
 import edu.lu.uni.serval.tbar.utils.SuspiciousPosition;
 

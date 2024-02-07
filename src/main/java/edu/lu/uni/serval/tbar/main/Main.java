@@ -124,8 +124,10 @@ public class Main {
 			fixer = new TBarFixer(Configuration.bugDataPath, projectName, bugNum, Configuration.defects4j_home);
 			fixer.dataType = "TBar";
 			fixer.isTestFixPatterns = line.hasOption("isTestFixPatterns");
-			fixer.metric = Configuration.faultLocalizationMetric;
-
+			if (Integer.MAX_VALUE == fixer.minErrorTest) {
+				System.out.println("Failed to defects4j compile bug " + bugId);
+				return;
+			}
 
 			// FIXME: fix the design here because the data preparer thing is shared weirdly 
 
@@ -146,14 +148,9 @@ public class Main {
 				// fixme: there is code to do line-level vs. file-level localization for some reason 
 				faultloc = new NormalFaultLoc(fixer.getDataPreparer(), fixer.dataType, projectName, faultLocFilePath, bugNum, Configuration.faultLocalizationMetric);
 				Configuration.outputPath += "NormalFL/";
-				if (Integer.MAX_VALUE == fixer.minErrorTest) {
-					System.out.println("Failed to defects4j compile bug " + bugId);
-					return;
-				}
-				
-		
 			}
 			fixer.setFaultLoc(faultloc);
+
 
 		} catch (ParseException exp) {
             System.out.println("Unexpected parser exception:" + exp.getMessage());

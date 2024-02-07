@@ -36,7 +36,6 @@ public abstract class AbstractFixer {
 	private static Logger log = LoggerFactory.getLogger(AbstractFixer.class);
 	
 	public abstract void fixProcess();
-	public String metric = "Ochiai";          // Fault localization metric.
 	protected String path = "";
 	protected String buggyProject = "";     // The buggy project name.
 	protected String defects4jPath;         // The path of local installed defects4j.
@@ -98,11 +97,6 @@ public abstract class AbstractFixer {
 //		createDictionary();
 	}
 
-	public AbstractFixer(String path, String metric, String projectName, int bugId, String defects4jPath) {
-		this(path, projectName, bugId, defects4jPath);
-		this.metric = metric;
-	}
-	
 	private void readPreviouslyFailedTestCases() {
 		String[] failedTestCases = FileHelper.readFile(Configuration.failedTestCasesFilePath + "/" + this.buggyProject + ".txt").split("\n");
 		List<String> failedTestCasesList = new ArrayList<>();
