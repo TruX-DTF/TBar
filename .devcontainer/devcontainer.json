@@ -1,15 +1,14 @@
 {
-    "build": {
-        "dockerfile": "Dockerfile"
-    },
+    "image": "sqtbar:latest",
+    //"build": {
+    //   "dockerfile": "Dockerfile"
+    //},
     "customizations": {
         "vscode": {
             "extensions": [
-                "donjayamanne.githistory",
                 "vscjava.vscode-java-pack",
                 "ms-vscode-remote.remote-containers"
             ]
         }
     }
-    //"image": "sqtbar:latest"
 }
